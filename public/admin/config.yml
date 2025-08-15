@@ -1,0 +1,153 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+  commit_messages:
+    create: 'content: create {{collection}} "{{slug}}"'
+    update: 'content: update {{collection}} "{{slug}}"'
+    delete: 'content: delete {{collection}} "{{slug}}"'
+    uploadMedia: 'media: upload {{path}}'
+    deleteMedia: 'media: delete {{path}}'
+
+# Enable local backend for development
+local_backend: true
+
+# Media files will be stored in the public directory
+media_folder: public/img
+public_folder: /img
+
+# Publish mode for editorial workflow
+publish_mode: editorial_workflow
+
+collections:
+  - name: 'blog'
+    label: 'Blog'
+    folder: 'content/blog'
+    create: true
+    slug: 'index'
+    media_folder: ''
+    public_folder: ''
+    path: '{{year}}/{{month}}/{{title}}/index'
+    editor:
+      preview: true
+    fields:
+      - {
+          label: 'Template Key',
+          name: 'templatekey',
+          widget: 'hidden',
+          default: 'blog-post',
+        }
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: 'Description', name: 'description', widget: 'string', required: false }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+      - {
+          label: 'Featured Post',
+          name: 'featuredpost',
+          widget: 'boolean',
+          required: false,
+          default: false,
+        }
+      - {
+          label: 'Featured Image',
+          name: 'featuredimage',
+          widget: 'image',
+          required: false,
+        }
+
+  - name: 'pages'
+    label: 'Pages'
+    folder: 'content/pages'
+    create: true
+    slug: '{{title}}'
+    media_folder: ''
+    public_folder: ''
+    path: '{{title}}/index'
+    editor:
+      preview: true
+    fields:
+      - {
+          label: 'Template Key',
+          name: 'templatekey',
+          widget: 'hidden',
+          default: 'page',
+        }
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+      - {
+          label: 'Featured Image',
+          name: 'featuredimage',
+          widget: 'image',
+          required: false,
+        }
+
+  - name: 'home'
+    label: 'Home'
+    files:
+      - file: 'content/home/index.md'
+        label: 'Home Page'
+        name: 'home'
+        editor:
+          preview: true
+        fields:
+          - {
+              label: 'Template Key',
+              name: 'templatekey',
+              widget: 'hidden',
+              default: 'index-page',
+            }
+          - { label: 'Title', name: 'title', widget: 'string' }
+          - label: 'Main Navigation'
+            name: 'navigation'
+            widget: 'list'
+            fields:
+              - { label: 'Display Text', name: 'title', widget: 'string' }
+              - { label: 'URL Path', name: 'slug', widget: 'string' }
+              - {
+                  label: 'Show Cart Indicator',
+                  name: 'showcartindicator',
+                  widget: 'boolean',
+                  required: false,
+                  default: false,
+                }
+          - { label: 'Tagline', name: 'tagline', widget: 'string' }
+          - { label: 'Home Quote', name: 'homequote', widget: 'text' }
+          - {
+              label: 'Featured Image',
+              name: 'featuredimage',
+              widget: 'image',
+              required: false,
+              media_folder: '/content/home',
+              public_folder: '',
+            }
+          - {
+              label: 'Footer Bio Image',
+              name: 'footerbioimage',
+              widget: 'image',
+              required: false,
+              media_folder: '/content/home',
+              public_folder: '',
+            }
+          - {
+              label: 'About Nina Footer Bio Text',
+              name: 'footerbiotext',
+              widget: 'text',
+            }
+          - label: 'Social Links'
+            name: 'sociallinks'
+            widget: 'list'
+            fields:
+              - { label: 'Link Name', name: 'title', widget: 'string' }
+              - { label: 'URL', name: 'url', widget: 'string' }
+          - {
+              label: 'Meet Nina Footer Text',
+              name: 'footermeettext',
+              widget: 'text',
+            }
+          - label: 'Footer Credits'
+            name: 'footercredits'
+            widget: 'list'
+            fields:
+              - { label: 'Text', name: 'text', widget: 'string' }
+              - { label: 'Link Text', name: 'linktext', widget: 'string' }
+              - { label: 'URL', name: 'url', widget: 'string' }
+          - { label: 'Body', name: 'body', widget: 'markdown' }
