@@ -72,10 +72,36 @@ export default function AdminPage() {
         strategy="lazyOnload"
         onLoad={() => {
           // Initialize Netlify Identity
-          if ((window as any).netlifyIdentity) {
-            (window as any).netlifyIdentity.on('init', (user: any) => {
+          if (
+            (
+              window as unknown as {
+                netlifyIdentity?: {
+                  on: (
+                    event: string,
+                    callback: (user?: unknown) => void
+                  ) => void;
+                };
+              }
+            ).netlifyIdentity
+          ) {
+            (
+              window as unknown as {
+                netlifyIdentity: {
+                  on: (
+                    event: string,
+                    callback: (user?: unknown) => void
+                  ) => void;
+                };
+              }
+            ).netlifyIdentity.on('init', (user: unknown) => {
               if (!user) {
-                (window as any).netlifyIdentity.on('login', () => {
+                (
+                  window as unknown as {
+                    netlifyIdentity: {
+                      on: (event: string, callback: () => void) => void;
+                    };
+                  }
+                ).netlifyIdentity.on('login', () => {
                   document.location.href = '/admin/';
                 });
               }
