@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "dev:cms": "decap-server",
+    "dev:all": "pnpm run dev:cms & pnpm run dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -15,6 +17,7 @@
     "axios": "^1.11.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "decap-cms-app": "^3.8.3",
     "gray-matter": "^4.0.3",
     "next": "15.4.6",
     "react": "19.1.0",
@@ -37,6 +40,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "decap-server": "^3.3.1",
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
     "prettier": "^3.6.2",
