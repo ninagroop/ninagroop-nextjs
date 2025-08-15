@@ -10,7 +10,7 @@ import type {
   BlogPostWithMetadata,
   PageWithMetadata,
   HomeContentWithMetadata,
-} from '../content/content.types';
+} from '../types/content.types';
 
 const contentDirectory = path.join(process.cwd(), 'content');
 
