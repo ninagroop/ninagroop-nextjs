@@ -1,15 +1,51 @@
-export default function HomePage() {
+import { getHomeContent } from '@/lib/markdown';
+import MarkdownRenderer from '@/lib/markdown-renderer';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+
+export const metadata: Metadata = {
+  title: 'Home - Nina Groop',
+  description:
+    'Nina Groop — writer, editor, grant writer, and life coach — helping people and organizations tell their stories.',
+};
+
+export default async function HomePage() {
+  const homeContent = await getHomeContent();
+
+  if (!homeContent) {
+    notFound();
+  }
+
+  const { frontmatter, htmlContent } = homeContent;
+
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <section className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-light mb-6">Welcome</h2>
-        <p className="text-lg text-gray-700 leading-relaxed mb-4">
-          This is a placeholder home page. The content will be migrated from the Gatsby site.
-        </p>
-        <p className="text-gray-600">
-          Navigation, header, and layout structure have been successfully migrated to Next.js with TypeScript and Tailwind CSS.
-        </p>
+    <>
+      {/* Tagline Section */}
+      <section className="flex w-full justify-center">
+        <h2 className="min-w-[80vw] bg-transparent py-5 text-center text-3xl font-bold text-black/80 uppercase">
+          {frontmatter.tagline}
+        </h2>
       </section>
-    </div>
+
+      {/* Spacing */}
+      <div className="h-16" />
+
+      {/* Home Quote Section */}
+      <section className="main-heading mb-12 inline-block bg-white/80 px-[4vw] py-5 text-black lg:max-w-[85vw] lg:px-5 lg:pl-[15vw] xl:max-w-[80vw] xl:pl-[20vw]">
+        <h4 className="pt-5 text-base leading-relaxed font-normal lg:text-base">
+          {frontmatter.homequote}
+        </h4>
+      </section>
+
+      {/* Main Content */}
+      <article className="article-body overflow-hidden bg-white/80 px-[4vw] py-[4vw] lg:w-full lg:px-[15vw] lg:py-12 xl:px-[20vw]">
+        <div itemProp="description">
+          <MarkdownRenderer
+            content={htmlContent}
+            className="prose prose-lg max-w-none"
+          />
+        </div>
+      </article>
+    </>
   );
 }
