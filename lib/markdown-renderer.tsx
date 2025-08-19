@@ -105,19 +105,41 @@ const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
   );
 };
 
+// Helper function to process images in markdown content
+const processImagePaths = (content: string, imagePath: string = '') => {
+  if (!imagePath) return content;
+
+  // Replace relative image paths with absolute paths
+  return content.replace(
+    /<img([^>]*?)src="([^"]*?)"([^>]*?)>/gi,
+    (match, beforeSrc, src, afterSrc) => {
+      // Skip if already processed or is external URL
+      if (src.startsWith('http') || src.startsWith('/')) {
+        return match;
+      }
+
+      // Convert relative path to absolute path
+      const absoluteSrc = `${imagePath}/${src}`;
+      return `<img${beforeSrc}src="${absoluteSrc}"${afterSrc}>`;
+    }
+  );
+};
+
 // Enhanced markdown renderer with custom components
 interface MarkdownRendererProps {
   content: string;
   className?: string;
+  imagePath?: string;
 }
 
 export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   content,
   className = '',
+  imagePath = '',
 }) => {
   // Process the content to handle custom components
   const processedContent = React.useMemo(() => {
-    const processed = content;
+    let processed = processImagePaths(content, imagePath);
 
     // Handle vertical-tiles-grid with proper React rendering
     if (processed.includes('<vertical-tiles-grid>')) {
@@ -209,7 +231,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
         dangerouslySetInnerHTML={{ __html: processed }}
       />
     );
-  }, [content, className]);
+  }, [content, className, imagePath]);
 
   return <>{processedContent}</>;
 };
