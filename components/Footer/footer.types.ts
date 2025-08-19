@@ -1,4 +1,4 @@
-import type { SocialLink, FooterCredit } from '@/content/content.types';
+import type { SocialLink, FooterCredit } from '@/types/content.types';
 
 export interface FooterProps {
   siteTitle: string;
@@ -18,7 +18,12 @@ export interface NewsletterModalProps {
   onClose: () => void;
 }
 
-export type SocialIconType = 'twitter' | 'instagram' | 'facebook' | 'youtube' | 'earth';
+export type SocialIconType =
+  | 'twitter'
+  | 'instagram'
+  | 'facebook'
+  | 'youtube'
+  | 'earth';
 
 export interface CalendlyButtonProps {
   children: React.ReactNode;
