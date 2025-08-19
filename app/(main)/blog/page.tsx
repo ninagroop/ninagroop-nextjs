@@ -1,19 +1,106 @@
-export default function BlogPage() {
-  return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <section className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-light mb-8">Blog</h1>
-        <div className="space-y-6">
-          <p className="text-lg text-gray-700 leading-relaxed">
-            Blog posts will be displayed here. This page will be populated with content from the markdown files in the content/blog directory.
-          </p>
-          <div className="border-l-4 border-gray-300 pl-4">
-            <p className="text-gray-600 italic">
-              Coming soon: Articles about life coaching, personal development, and inspiration.
-            </p>
-          </div>
+import { getAllPosts } from '@/lib/markdown';
+import Bio from '@/components/Bio';
+import Link from 'next/link';
+import Image from 'next/image';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Blog - Nina Groop',
+  description:
+    'Articles about life coaching, personal development, writing, and inspiration by Nina Groop.',
+};
+
+export default async function BlogPage() {
+  const posts = await getAllPosts();
+
+  if (posts.length === 0) {
+    return (
+      <>
+        <Bio />
+        <h1 className="main-heading mb-12 inline-block bg-white/80 px-[4vw] py-5 text-black lg:max-w-[85vw] lg:px-5 lg:pl-[15vw] xl:max-w-[80vw] xl:pl-[20vw]">
+          Blog
+        </h1>
+        <div className="article-body overflow-hidden bg-white/80 px-[4vw] py-[4vw] lg:w-full lg:px-[15vw] lg:py-12 xl:px-[20vw]">
+          <p>No blog posts found.</p>
         </div>
-      </section>
-    </div>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Bio />
+      <h1 className="main-heading mb-12 inline-block bg-white/80 px-[4vw] py-5 text-black lg:max-w-[85vw] lg:px-5 lg:pl-[15vw] xl:max-w-[80vw] xl:pl-[20vw]">
+        Blog
+      </h1>
+
+      <div className="article-body overflow-hidden bg-white/80 px-[4vw] py-[4vw] lg:w-full lg:px-[15vw] lg:py-12 xl:px-[20vw]">
+        <div className="featured-grid">
+          <ol className="featured-block grid list-none gap-5 p-0 md:grid-cols-2 lg:grid-cols-3">
+            {posts.map((post) => {
+              const title = post.frontmatter.title;
+              const hasImage = post.frontmatter.featuredimage;
+
+              if (!hasImage) return null;
+
+              return (
+                <li
+                  key={post.slug}
+                  className="featured-post-tile relative p-0 transition-opacity hover:opacity-70"
+                >
+                  <Link
+                    href={post.slug}
+                    className="block border-none no-underline"
+                    itemProp="url"
+                  >
+                    <article
+                      className="post-list-item relative"
+                      itemScope
+                      itemType="http://schema.org/Article"
+                    >
+                      <div className="featured-post-wrapper relative">
+                        <div className="featured-image relative aspect-square overflow-hidden">
+                          <Image
+                            src={`/content/blog${post.slug.replace('/blog', '')}/${post.frontmatter.featuredimage}`}
+                            alt={title}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          />
+                        </div>
+                        <div className="featured-footer absolute bottom-0 left-0 w-full bg-gradient-to-t from-white/55 via-white/85 to-white/90 p-2.5">
+                          <header>
+                            <h4 className="m-0 text-base">
+                              <span
+                                itemProp="headline"
+                                className="tracking-normal text-black no-underline"
+                              >
+                                {title}
+                              </span>
+                            </h4>
+                          </header>
+                          <section className="featured-description block h-px overflow-hidden">
+                            <p
+                              className="text-sm text-gray-700"
+                              dangerouslySetInnerHTML={{
+                                __html:
+                                  post.frontmatter.description ||
+                                  post.excerpt ||
+                                  '',
+                              }}
+                              itemProp="description"
+                            />
+                          </section>
+                        </div>
+                      </div>
+                    </article>
+                  </Link>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      </div>
+    </>
   );
 }
