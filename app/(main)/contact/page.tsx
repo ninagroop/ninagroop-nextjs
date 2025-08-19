@@ -1,19 +1,51 @@
-export default function ContactPage() {
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { getPageBySlug } from '../../../lib/markdown';
+import MarkdownRenderer from '../../../lib/markdown-renderer';
+import ContactForm from './ContactForm';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const pageData = await getPageBySlug('contact');
+
+  return {
+    title: `${pageData?.frontmatter.title || 'Contact'} - Nina Groop`,
+    description:
+      'Get in touch with Nina Groop for coaching inquiries, speaking engagements, or general questions.',
+  };
+}
+
+export default async function ContactPage() {
+  const pageData = await getPageBySlug('contact');
+
+  if (!pageData) {
+    notFound();
+  }
+
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <section className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-light mb-8">Contact</h1>
-        <div className="space-y-6">
-          <p className="text-lg text-gray-700 leading-relaxed">
-            Get in touch with Nina Groop for coaching inquiries, speaking engagements, or general questions.
-          </p>
-          <div className="border-l-4 border-gray-300 pl-4">
-            <p className="text-gray-600 italic">
-              Contact form and information will be added here. This page will include email, social media links, and a contact form.
-            </p>
-          </div>
-        </div>
-      </section>
-    </div>
+    <main className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
+      <article
+        className="page mx-auto max-w-4xl"
+        itemScope
+        itemType="http://schema.org/Article"
+      >
+        <header className="mb-8">
+          <h1
+            className="main-heading mb-4 text-4xl font-light"
+            itemProp="headline"
+          >
+            {pageData.frontmatter.title}
+          </h1>
+        </header>
+
+        <section
+          className="article-body prose prose-lg mb-8 max-w-none"
+          itemProp="articleBody"
+        >
+          <MarkdownRenderer content={pageData.htmlContent || ''} />
+        </section>
+
+        <ContactForm />
+      </article>
+    </main>
   );
 }
