@@ -3,7 +3,7 @@
  */
 
 // Export all content types
-export * from '../content/content.types';
+export * from './content.types';
 
 // Export navigation types
 export * from './navigation.types';
