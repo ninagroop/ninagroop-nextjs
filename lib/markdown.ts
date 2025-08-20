@@ -18,6 +18,7 @@ const contentDirectory = path.join(process.cwd(), 'content');
  * Get the content directory path for a specific content type
  */
 function getContentDirectory(contentType: 'blog' | 'pages' | 'home'): string {
+  console.log(contentDirectory);
   return path.join(contentDirectory, contentType);
 }
 
@@ -47,7 +48,7 @@ function findMarkdownFiles(dir: string): string[] {
 
 /**
  * Generate a slug from a file path
- * Matches Gatsby's behavior of creating slugs from file paths
+ * Creates flat slugs compatible with /blog/[slug] routing
  */
 function generateSlugFromPath(
   filePath: string,
@@ -59,20 +60,27 @@ function generateSlugFromPath(
   );
   const dirPath = path.dirname(relativePath);
 
-  // For index.md files, use the directory name as the slug
-  let slug = dirPath === '.' ? '' : dirPath;
+  let slug: string;
 
-  // Replace backslashes with forward slashes (for Windows compatibility)
-  slug = slug.replace(/\\/g, '/');
-
-  // Add leading slash and content type prefix
   if (contentType === 'blog') {
+    // For blog posts, use only the final directory name to create flat slugs
+    // This converts paths like "2021/12/blessing-for-a-new-year" to just "blessing-for-a-new-year"
+    const pathParts = dirPath
+      .split(path.sep)
+      .filter((part) => part !== '.' && part !== '');
+    slug = pathParts.length > 0 ? pathParts[pathParts.length - 1] : '';
     slug = `/blog/${slug}`;
   } else if (contentType === 'pages') {
+    // For pages, use the directory name as the slug
+    slug = dirPath === '.' ? '' : dirPath;
+    // Replace backslashes with forward slashes (for Windows compatibility)
+    slug = slug.replace(/\\/g, '/');
     // Pages don't include '/pages' in their slug (matches Gatsby behavior)
     slug = `/${slug}`;
   } else if (contentType === 'home') {
     slug = '/';
+  } else {
+    slug = '';
   }
 
   // Clean up any double slashes
@@ -98,26 +106,25 @@ export async function getPostBySlug(
   try {
     const blogDir = getContentDirectory('blog');
     const normalizedSlug = slug.replace(/^\/blog\//, '').replace(/\/$/, '');
+    const targetSlug = `/blog/${normalizedSlug}`;
 
-    // Try to find the markdown file
-    const possiblePaths = [
-      path.join(blogDir, normalizedSlug, 'index.md'),
-      path.join(blogDir, `${normalizedSlug}.md`),
-    ];
+    // Find all markdown files and search for the one with matching slug
+    const markdownFiles = findMarkdownFiles(blogDir);
 
-    let filePath: string | null = null;
-    for (const p of possiblePaths) {
-      if (fs.existsSync(p)) {
-        filePath = p;
+    let matchingFilePath: string | null = null;
+    for (const filePath of markdownFiles) {
+      const generatedSlug = generateSlugFromPath(filePath, 'blog');
+      if (generatedSlug === targetSlug) {
+        matchingFilePath = filePath;
         break;
       }
     }
 
-    if (!filePath) {
+    if (!matchingFilePath) {
       return null;
     }
 
-    const fileContents = fs.readFileSync(filePath, 'utf8');
+    const fileContents = fs.readFileSync(matchingFilePath, 'utf8');
     const { data, content, excerpt } = matter(fileContents, { excerpt: true });
 
     const frontmatter = data as BlogPost;
@@ -135,14 +142,19 @@ export async function getPostBySlug(
       day: 'numeric',
     });
 
+    // Get the actual directory path for images
+    const relativePath = path.relative(blogDir, matchingFilePath);
+    const imageBasePath = path.dirname(relativePath);
+
     return {
       frontmatter,
       content,
       htmlContent,
       excerpt: excerpt || frontmatter.description || '',
-      slug: `/blog/${normalizedSlug}`,
+      slug: targetSlug,
       readingTime,
       formattedDate,
+      imageBasePath,
     };
   } catch (error) {
     console.error(`Error reading post with slug ${slug}:`, error);
@@ -180,6 +192,9 @@ export async function getAllPosts(): Promise<BlogPostWithMetadata[]> {
         day: 'numeric',
       });
 
+      // Get the actual directory path for images
+      const imageBasePath = path.dirname(path.relative(blogDir, filePath));
+
       return {
         frontmatter,
         content,
@@ -188,6 +203,7 @@ export async function getAllPosts(): Promise<BlogPostWithMetadata[]> {
         slug,
         readingTime,
         formattedDate,
+        imageBasePath,
       };
     })
   );

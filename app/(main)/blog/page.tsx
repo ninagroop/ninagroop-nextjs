@@ -61,7 +61,7 @@ export default async function BlogPage() {
                       <div className="featured-post-wrapper relative">
                         <div className="featured-image relative aspect-square overflow-hidden">
                           <Image
-                            src={`/content/blog${post.slug.replace('/blog', '')}/${post.frontmatter.featuredimage}`}
+                            src={`/content/blog/${post.imageBasePath}/${post.frontmatter.featuredimage}`}
                             alt={title}
                             fill
                             className="object-cover"

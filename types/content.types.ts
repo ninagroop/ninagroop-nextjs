@@ -94,6 +94,7 @@ export interface BlogPostWithMetadata extends ParsedMarkdown<BlogPost> {
   slug: string;
   readingTime?: number;
   formattedDate?: string;
+  imageBasePath?: string;
 }
 
 /**

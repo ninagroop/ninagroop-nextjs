@@ -24,8 +24,8 @@ collections:
     folder: 'content/blog'
     create: true
     slug: 'index'
-    media_folder: ''
-    public_folder: ''
+    media_folder: '/public/content/blog'
+    public_folder: '/content/blog'
     path: '{{year}}/{{month}}/{{title}}/index'
     editor:
       preview: true
@@ -38,7 +38,12 @@ collections:
         }
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
-      - { label: 'Description', name: 'description', widget: 'string', required: false }
+      - {
+          label: 'Description',
+          name: 'description',
+          widget: 'string',
+          required: false,
+        }
       - { label: 'Body', name: 'body', widget: 'markdown' }
       - {
           label: 'Featured Post',
@@ -59,8 +64,8 @@ collections:
     folder: 'content/pages'
     create: true
     slug: '{{title}}'
-    media_folder: ''
-    public_folder: ''
+    media_folder: '/public/content/pages'
+    public_folder: '/content/pages'
     path: '{{title}}/index'
     editor:
       preview: true
@@ -116,16 +121,16 @@ collections:
               name: 'featuredimage',
               widget: 'image',
               required: false,
-              media_folder: '/content/home',
-              public_folder: '',
+              media_folder: '/public/content/home',
+              public_folder: '/content/home',
             }
           - {
               label: 'Footer Bio Image',
               name: 'footerbioimage',
               widget: 'image',
               required: false,
-              media_folder: '/content/home',
-              public_folder: '',
+              media_folder: '/public/content/home',
+              public_folder: '/content/home',
             }
           - {
               label: 'About Nina Footer Bio Text',

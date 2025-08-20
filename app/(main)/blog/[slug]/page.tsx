@@ -33,7 +33,7 @@ export async function generateMetadata({
     };
   }
 
-  const { frontmatter } = post;
+  const { frontmatter, imageBasePath } = post;
 
   return {
     title: `${frontmatter.title} - Nina Groop`,
@@ -47,7 +47,7 @@ export async function generateMetadata({
       ...(frontmatter.featuredimage && {
         images: [
           {
-            url: `/content/blog/${slug}/${frontmatter.featuredimage}`,
+            url: `/content/blog/${imageBasePath}/${frontmatter.featuredimage}`,
             alt: frontmatter.title,
           },
         ],
@@ -58,7 +58,7 @@ export async function generateMetadata({
       title: frontmatter.title,
       description: frontmatter.description || post.excerpt,
       ...(frontmatter.featuredimage && {
-        images: [`/content/blog/${slug}/${frontmatter.featuredimage}`],
+        images: [`/content/blog/${imageBasePath}/${frontmatter.featuredimage}`],
       }),
     },
   };
@@ -72,7 +72,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
-  const { frontmatter, htmlContent, formattedDate, readingTime } = post;
+  const {
+    frontmatter,
+    htmlContent,
+    formattedDate,
+    readingTime,
+    imageBasePath,
+  } = post;
+
   const adjacentPosts = await getAdjacentPosts(post.slug);
 
   return (
@@ -86,7 +93,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         {frontmatter.featuredimage && (
           <div className="featured-image-container relative mb-8 h-64 w-full overflow-hidden md:h-80 lg:h-96">
             <Image
-              src={`/content/blog/${slug}/${frontmatter.featuredimage}`}
+              src={`/content/blog/${imageBasePath}/${frontmatter.featuredimage}`}
               alt={frontmatter.title}
               fill
               className="object-cover"
@@ -216,7 +223,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               },
               description: frontmatter.description || post.excerpt,
               ...(frontmatter.featuredimage && {
-                image: `/content/blog/${slug}/${frontmatter.featuredimage}`,
+                image: `/content/blog/${imageBasePath}/${frontmatter.featuredimage}`,
               }),
             }),
           }}
