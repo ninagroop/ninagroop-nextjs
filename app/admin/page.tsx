@@ -37,10 +37,10 @@ export default function AdminPage() {
       <div className="flex min-h-screen items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-red-600">Error Loading CMS</h1>
-          <p className="mt-2 text-gray-600">{error}</p>
+          <p className="text-body-text mt-2">{error}</p>
           <button
             onClick={() => window.location.reload()}
-            className="mt-4 rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+            className="bg-brand-primary mt-4 rounded px-4 py-2 text-white hover:bg-orange-600"
           >
             Retry
           </button>
@@ -54,8 +54,8 @@ export default function AdminPage() {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <div className="text-center">
-          <div className="mb-4 h-12 w-12 animate-spin rounded-full border-b-2 border-gray-900"></div>
-          <p className="text-gray-600">Loading CMS...</p>
+          <div className="border-text-bold mb-4 h-12 w-12 animate-spin rounded-full border-b-2"></div>
+          <p className="text-body-text">Loading CMS...</p>
         </div>
       </div>
     );

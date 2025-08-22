@@ -19,7 +19,12 @@ interface MobileMenuProps {
   pathname: string;
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, nav, pathname }) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({
+  isOpen,
+  onClose,
+  nav,
+  pathname,
+}) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -37,8 +42,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, nav, pathname 
       {/* Backdrop */}
       <div
         className={cn(
-          'fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 lg:hidden',
-          isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          'fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 lg:hidden',
+          isOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
         )}
         onClick={onClose}
       />
@@ -46,18 +51,18 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, nav, pathname 
       {/* Slide-out menu */}
       <div
         className={cn(
-          'fixed top-0 right-0 h-full w-64 bg-white z-50 shadow-xl transform transition-transform duration-300 ease-in-out lg:hidden',
+          'fixed top-0 right-0 z-50 h-full w-64 transform bg-white shadow-xl transition-transform duration-300 ease-in-out lg:hidden',
           isOpen ? 'translate-x-0' : 'translate-x-full'
         )}
       >
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          className="text-text-bold hover:bg-border-bg absolute top-4 right-4 rounded-lg p-2 transition-colors"
           aria-label="Close menu"
         >
           <svg
-            className="w-6 h-6"
+            className="h-6 w-6"
             fill="none"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -78,9 +83,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, nav, pathname 
                   href={item.slug}
                   onClick={onClose}
                   className={cn(
-                    'block px-4 py-3 text-sm uppercase tracking-wider font-medium rounded-lg transition-colors',
-                    'hover:bg-gray-100',
-                    pathname === item.slug && 'bg-gray-100 font-semibold'
+                    'no-text block rounded-lg px-4 py-3 text-sm font-medium tracking-wider uppercase transition-colors',
+                    'text-text-bold hover:bg-border-bg',
+                    pathname === item.slug &&
+                      'text-text-bold bg-border-bg font-semibold'
                   )}
                 >
                   {item.title}
@@ -126,8 +132,10 @@ const Header: React.FC<HeaderProps> = ({ siteTitle, siteDescription, nav }) => {
   const filteredNav = nav.filter((item) => {
     // Hide store/checkout navigation items when not on those pages
     const storePages = ['/store', '/checkout', '/product'];
-    const isStorePage = storePages.some(page => pathname?.startsWith(page));
-    const isStoreNavItem = storePages.some(page => item.slug.startsWith(page));
+    const isStorePage = storePages.some((page) => pathname?.startsWith(page));
+    const isStoreNavItem = storePages.some((page) =>
+      item.slug.startsWith(page)
+    );
 
     if (isStoreNavItem && !isStorePage) {
       return false;
@@ -141,18 +149,17 @@ const Header: React.FC<HeaderProps> = ({ siteTitle, siteDescription, nav }) => {
       {/* Fixed header with hide on scroll */}
       <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-30 bg-white transition-all duration-300',
+          'fixed top-0 right-0 left-0 z-30 bg-white transition-all duration-300',
           isScrolled && 'shadow-md',
           !isVisible && '-translate-y-full'
         )}
       >
         <div className="px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex h-16 items-center justify-between">
             {/* Logo/Site Title */}
             <Link
               href="/"
-              className="font-serif text-xl sm:text-2xl tracking-wide hover:opacity-80 transition-opacity"
-              style={{ fontFamily: 'Liu Jian Mao Cao, cursive' }}
+              className="brand navbar-heading text-brand-orange text-xl tracking-wide transition-opacity hover:opacity-80 sm:text-2xl"
             >
               {siteTitle}
             </Link>
@@ -165,9 +172,9 @@ const Header: React.FC<HeaderProps> = ({ siteTitle, siteDescription, nav }) => {
                     <Link
                       href={item.slug}
                       className={cn(
-                        'px-4 py-2 text-sm uppercase tracking-wider font-medium transition-colors',
-                        'hover:text-gray-600',
-                        pathname === item.slug && 'text-black font-semibold'
+                        'no-text px-4 py-2 text-sm font-medium tracking-wider uppercase transition-colors',
+                        'hover:text-white',
+                        pathname === item.slug && 'text-text-bold font-semibold'
                       )}
                     >
                       {item.title}
@@ -180,11 +187,11 @@ const Header: React.FC<HeaderProps> = ({ siteTitle, siteDescription, nav }) => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(true)}
-              className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              className="text-text-bold hover:bg-border-bg rounded-lg p-2 transition-colors lg:hidden"
               aria-label="Open menu"
             >
               <svg
-                className="w-6 h-6"
+                className="h-6 w-6"
                 fill="none"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -204,14 +211,11 @@ const Header: React.FC<HeaderProps> = ({ siteTitle, siteDescription, nav }) => {
 
       {/* Hero Section - Only show on home page */}
       {pathname === '/' && (
-        <div className="text-center py-12 sm:py-16 lg:py-20">
-          <h1
-            className="text-4xl sm:text-5xl lg:text-6xl tracking-wide mb-4"
-            style={{ fontFamily: 'Liu Jian Mao Cao, cursive' }}
-          >
+        <div className="py-12 text-center sm:py-16 lg:py-20">
+          <h1 className="brand brand-title mb-4 text-4xl tracking-wide sm:text-5xl lg:text-6xl">
             {siteTitle}
           </h1>
-          <h2 className="text-lg sm:text-xl lg:text-2xl text-gray-600 font-light tracking-wide">
+          <h2 className="brand brand-subtitle text-lg font-light tracking-wide sm:text-xl lg:text-2xl">
             {siteDescription}
           </h2>
         </div>

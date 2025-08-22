@@ -22,7 +22,7 @@ export default async function HomePage() {
     <>
       {/* Tagline Section */}
       <section className="flex w-full justify-center">
-        <h2 className="min-w-[80vw] bg-transparent py-5 text-center text-3xl font-bold text-black/80 uppercase">
+        <h2 className="text-text-bold min-w-[80vw] bg-transparent py-5 text-center text-3xl font-bold uppercase">
           {frontmatter.tagline}
         </h2>
       </section>
@@ -31,8 +31,8 @@ export default async function HomePage() {
       <div className="h-16" />
 
       {/* Home Quote Section */}
-      <section className="main-heading mb-12 inline-block bg-white/80 px-[4vw] py-5 text-black lg:max-w-[85vw] lg:px-5 lg:pl-[15vw] xl:max-w-[80vw] xl:pl-[20vw]">
-        <h4 className="pt-5 text-base leading-relaxed font-normal lg:text-base">
+      <section className="main-heading text-text-bold mb-12 inline-block bg-white/80 px-[4vw] py-5 lg:max-w-[85vw] lg:px-5 lg:pl-[15vw] xl:max-w-[80vw] xl:pl-[20vw]">
+        <h4 className="text-body-text pt-5 text-base leading-relaxed font-normal lg:text-base">
           {frontmatter.homequote}
         </h4>
       </section>
@@ -42,7 +42,7 @@ export default async function HomePage() {
         <div itemProp="description">
           <MarkdownRenderer
             content={htmlContent}
-            className="prose prose-lg max-w-none"
+            className="prose prose-lg text-body-text max-w-none"
           />
         </div>
       </article>

@@ -106,14 +106,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         {/* Article Header */}
         <header className="mb-8">
           <h1
-            className="main-heading mb-4 inline-block bg-white/80 px-[4vw] py-5 text-black lg:max-w-[85vw] lg:px-5 lg:pl-[15vw] xl:max-w-[80vw] xl:pl-[20vw]"
+            className="main-heading text-text-bold mb-4 inline-block bg-white/80 px-[4vw] py-5 lg:max-w-[85vw] lg:px-5 lg:pl-[15vw] xl:max-w-[80vw] xl:pl-[20vw]"
             itemProp="headline"
           >
             {frontmatter.title}
           </h1>
 
           {/* Article Meta */}
-          <div className="article-meta bg-white/60 px-[4vw] py-2 text-sm text-gray-600 lg:px-[15vw] xl:px-[20vw]">
+          <div className="article-meta text-text-light bg-white/60 px-[4vw] py-2 text-sm lg:px-[15vw] xl:px-[20vw]">
             <time
               dateTime={frontmatter.date}
               itemProp="datePublished"
@@ -134,10 +134,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         >
           <MarkdownRenderer
             content={htmlContent || ''}
-            className="prose prose-lg prose-headings:font-normal prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:leading-relaxed prose-a:text-orange-600 prose-a:no-underline hover:prose-a:text-orange-700 prose-a:border-b prose-a:border-dotted prose-a:border-orange-300 hover:prose-a:border-transparent prose-strong:text-gray-900 prose-strong:font-semibold max-w-none"
+            className="prose prose-lg prose-headings:font-normal prose-headings:text-text-bold prose-p:text-body-text prose-p:leading-relaxed prose-a:text-brand-orange prose-a:no-underline hover:prose-a:text-text-bold prose-a:border-b prose-a:border-dotted prose-a:border-text-light hover:prose-a:border-transparent prose-strong:text-text-bold prose-strong:font-semibold max-w-none"
           />
 
-          <hr className="my-12 border-0 border-b-2 border-gray-200" />
+          <hr className="border-border my-12 border-0 border-b-2" />
 
           {/* Post Navigation */}
           <nav className="blog-post-nav" aria-label="Blog post navigation">
@@ -147,16 +147,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <Link
                     href={adjacentPosts.previous.slug}
                     rel="prev"
-                    className="group inline-flex items-center text-orange-600 transition-colors hover:text-orange-700"
+                    className="group text-brand-orange hover:text-text-bold inline-flex items-center transition-colors"
                   >
                     <span className="mr-2" aria-hidden="true">
                       ←
                     </span>
                     <div className="min-w-0">
-                      <div className="text-xs tracking-wide text-gray-500 uppercase">
+                      <div className="text-text-light text-xs tracking-wide uppercase">
                         Previous
                       </div>
-                      <div className="truncate font-medium group-hover:text-orange-700">
+                      <div className="group-hover:text-text-bold truncate font-medium">
                         {adjacentPosts.previous.frontmatter.title}
                       </div>
                     </div>
@@ -168,13 +168,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <Link
                     href={adjacentPosts.next.slug}
                     rel="next"
-                    className="group inline-flex items-center justify-end text-orange-600 transition-colors hover:text-orange-700"
+                    className="group text-brand-orange hover:text-text-bold inline-flex items-center justify-end transition-colors"
                   >
                     <div className="min-w-0 text-right">
-                      <div className="text-xs tracking-wide text-gray-500 uppercase">
+                      <div className="text-text-light text-xs tracking-wide uppercase">
                         Next
                       </div>
-                      <div className="truncate font-medium group-hover:text-orange-700">
+                      <div className="group-hover:text-text-bold truncate font-medium">
                         {adjacentPosts.next.frontmatter.title}
                       </div>
                     </div>
@@ -188,10 +188,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </nav>
 
           {/* Back to Blog */}
-          <div className="mt-12 border-t border-gray-200 pt-8">
+          <div className="border-border mt-12 border-t pt-8">
             <Link
               href="/blog"
-              className="inline-flex items-center font-medium text-orange-600 transition-colors hover:text-orange-700"
+              className="text-brand-orange hover:text-text-bold inline-flex items-center font-medium transition-colors"
             >
               <span className="mr-2" aria-hidden="true">
                 ←

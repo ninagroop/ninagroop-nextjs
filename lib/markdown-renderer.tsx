@@ -50,9 +50,9 @@ const PostGrid: React.FC<PostGridProps> = ({ featured = true, count = 3 }) => {
   // For now, render a placeholder since we'd need to implement the blog data fetching
   return (
     <div className="post-grid mb-8">
-      <div className="rounded-lg bg-gray-50 p-8 text-center">
-        <p className="text-gray-600">Featured Blog Posts</p>
-        <p className="text-sm text-gray-400">
+      <div className="bg-border-bg rounded-lg p-8 text-center">
+        <p className="text-body-text">Featured Blog Posts</p>
+        <p className="text-text-light text-sm">
           Showing {count} {featured ? 'featured' : 'recent'} posts
         </p>
       </div>
@@ -95,9 +95,9 @@ const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
   // For now, render a placeholder since we'd need to implement Stripe product data fetching
   return (
     <div className="featured-products mb-8">
-      <div className="rounded-lg bg-gray-50 p-8 text-center">
-        <p className="text-gray-600">Featured Products</p>
-        <p className="text-sm text-gray-400">
+      <div className="bg-border-bg rounded-lg p-8 text-center">
+        <p className="text-body-text">Featured Products</p>
+        <p className="text-text-light text-sm">
           Showing {count} {featured ? 'featured' : 'recent'} products
         </p>
       </div>

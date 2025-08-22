@@ -17,7 +17,7 @@ export default async function BlogPage() {
     return (
       <>
         <Bio />
-        <h1 className="main-heading mb-12 inline-block bg-white/80 px-[4vw] py-5 text-black lg:max-w-[85vw] lg:px-5 lg:pl-[15vw] xl:max-w-[80vw] xl:pl-[20vw]">
+        <h1 className="main-heading text-text-bold mb-12 inline-block bg-white/80 px-[4vw] py-5 lg:max-w-[85vw] lg:px-5 lg:pl-[15vw] xl:max-w-[80vw] xl:pl-[20vw]">
           Blog
         </h1>
         <div className="article-body overflow-hidden bg-white/80 px-[4vw] py-[4vw] lg:w-full lg:px-[15vw] lg:py-12 xl:px-[20vw]">
@@ -30,7 +30,7 @@ export default async function BlogPage() {
   return (
     <>
       <Bio />
-      <h1 className="main-heading mb-12 inline-block bg-white/80 px-[4vw] py-5 text-black lg:max-w-[85vw] lg:px-5 lg:pl-[15vw] xl:max-w-[80vw] xl:pl-[20vw]">
+      <h1 className="main-heading text-text-bold mb-12 inline-block bg-white/80 px-[4vw] py-5 lg:max-w-[85vw] lg:px-5 lg:pl-[15vw] xl:max-w-[80vw] xl:pl-[20vw]">
         Blog
       </h1>
 
@@ -73,7 +73,7 @@ export default async function BlogPage() {
                             <h4 className="m-0 text-base">
                               <span
                                 itemProp="headline"
-                                className="tracking-normal text-black no-underline"
+                                className="text-text-bold tracking-normal no-underline"
                               >
                                 {title}
                               </span>
@@ -81,7 +81,7 @@ export default async function BlogPage() {
                           </header>
                           <section className="featured-description block h-px overflow-hidden">
                             <p
-                              className="text-sm text-gray-700"
+                              className="text-body-text text-sm"
                               dangerouslySetInnerHTML={{
                                 __html:
                                   post.frontmatter.description ||

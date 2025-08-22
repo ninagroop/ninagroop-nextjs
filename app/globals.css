@@ -2,40 +2,105 @@
 @import 'tailwindcss';
 
 :root {
+  /* Brand Colors */
+  --brand-primary: #d96528; /* Orange/rust - primary brand color */
+  --brand-secondary: #03c1c1; /* Teal - secondary brand color */
+
+  /* Text Colors */
+  --body-text: rgb(58, 56, 52); /* Warm brown for body text */
+  --foreground: #ce812a; /* Golden orange for links */
+  --foreground-bold: #313131; /* Dark gray for bold text */
+  --foreground-light: rgba(0, 0, 0, 0.35); /* Light gray for muted text */
+
+  /* Background Colors */
   --background: #ffffff;
-  --foreground: #171717;
+  --border: rgba(0, 0, 0, 0.125);
+  --border-bg: rgba(0, 0, 0, 0.025);
+  --border2: rgba(0, 0, 0, 0.25);
+  --border2-bg: rgba(0, 0, 0, 0.075);
+  --accent: #865b33;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans:
-    'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-mono: var(--font-geist-mono);
-}
+  /* Custom color palette */
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-secondary: var(--brand-secondary);
+  --color-brand-orange: var(--foreground);
+  --color-body-text: var(--body-text);
+  --color-text-bold: var(--foreground-bold);
+  --color-text-light: var(--foreground-light);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --color-border-bg: var(--border-bg);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Font families */
+  --font-sans:
+    var(--font-montserrat), 'Montserrat', system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-heading:
+    var(--font-raleway), 'Raleway', system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-brand: 'Liu Jian Mao Cao', cursive;
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family:
-    'Montserrat',
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  color: var(--body-text);
+  font-family: var(--font-sans);
+  font-size: 14pt;
   font-weight: 400;
+  line-height: 1.65;
+  height: auto !important;
+  height: 100%;
+  min-height: 100%;
+  min-height: 100vh;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 1680px) {
+  body {
+    font-size: 14pt;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  body {
+    font-size: 12pt;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  body {
+    font-size: 12pt;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  body {
+    font-size: 12pt;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 12pt;
+  }
+}
+
+/* Reset */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+p {
+  margin-bottom: 0.6em;
 }
 
 /* Typography */
@@ -45,52 +110,339 @@ h3,
 h4,
 h5,
 h6 {
-  font-family:
-    'Raleway',
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  font-weight: 400;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--foreground-bold);
+  letter-spacing: 0.1em;
+  margin: 0 0 1rem 0;
+}
+
+h1,
+h3 {
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: normal;
+}
+h2 {
+  font-size: 1.8em;
+  font-weight: normal;
+}
+h3 {
+  font-size: 1.6em;
+  font-weight: normal;
+}
+h4 {
+  font-size: 1.4em;
+}
+h5 {
+  font-size: 1.2em;
+}
+h6 {
+  font-size: 1em;
+}
+
+@media screen and (max-width: 736px) {
+  h1 {
+    font-size: 1.6em;
+  }
+  h2 {
+    font-size: 1.4em;
+  }
 }
 
 /* Links */
 a {
-  color: inherit;
+  color: var(--foreground);
   text-decoration: none;
-  transition: color 0.2s ease;
+  border-bottom: dotted 1px var(--foreground-light);
+  transition:
+    color 0.2s ease-in-out,
+    border-bottom-color 0.2s ease-in-out;
 }
 
 a:hover {
-  opacity: 0.8;
+  color: var(--foreground-bold) !important;
+  border-bottom-color: transparent;
+}
+
+a.no-text {
+  border-bottom: none;
+}
+
+a.btn {
+  text-decoration: none;
+  border-bottom: none;
+}
+
+/* Strong and emphasis */
+strong,
+b {
+  color: var(--foreground-bold);
+  font-weight: 600;
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+/* Brand styles */
+.brand {
+  font-family: var(--font-brand);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: none;
+}
+
+.brand-title {
+  font-size: 4.7rem;
+  margin-top: 5rem;
+  margin-bottom: 0.25rem;
+  text-shadow:
+    2px 0px 0px rgba(255, 255, 255, 0.5),
+    0px -2px 0px rgba(255, 255, 255, 0.5),
+    -2px 0px 0px rgba(255, 255, 255, 0.5),
+    0px 2px 0px rgba(255, 255, 255, 0.5);
+}
+
+.brand-subtitle {
+  color: var(--foreground);
+  font-size: 1.6rem;
+  margin-top: 0.25rem;
+  margin-bottom: 4rem;
+  padding: 0 15px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.navbar-heading {
+  font-family: var(--font-brand);
+  font-size: 1.6em;
+  margin: 0;
+  letter-spacing: 0.05em;
+  border-bottom: none;
+}
+
+.main-heading {
+  background: rgba(255, 255, 255, 0.8);
+  color: black;
+  display: inline-block;
+  padding: 20px 4vw;
+  margin-bottom: 3em;
+  text-transform: none;
+}
+
+.article-body {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 4vw;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 1000px) {
+  .article-body {
+    padding: 50px 15vw;
+    width: 100%;
+  }
+  .main-heading {
+    padding: 0 20px 0 15vw;
+    max-width: 85vw;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .article-body {
+    padding: 50px 20vw;
+  }
+  .main-heading {
+    padding: 0 20px 0 20vw;
+    max-width: 80vw;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  .brand-title {
+    font-size: 3rem;
+    margin-top: 10rem;
+    margin-bottom: 7rem;
+  }
+}
+
+/* Buttons */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--foreground-bold);
+  font-weight: 700;
+  transition: 0.3s all ease;
+}
+
+button.purchase {
+  background: var(--brand-primary);
+  color: white;
+  font-size: 16px;
+  border: none;
+}
+
+button.purchase:hover {
+  background: #f07340; /* Lighter version of brand primary */
+}
+
+button.pay-with-stripe {
+  background: black;
+  color: white !important;
+  font-size: 16px;
+  border: none;
+}
+
+button.pay-with-stripe:hover {
+  background: var(--brand-primary);
+}
+
+button.pay-with-stripe:disabled {
+  background: #999;
+}
+
+.btn-primary {
+  background: var(--brand-primary);
+  color: white;
+  font-weight: 700;
+  transition: 0.3s all ease;
+}
+
+.btn-primary:hover {
+  background: #f07340;
+}
+
+/* Pricing */
+.price {
+  color: var(--brand-primary);
+  font-size: 20px;
+  margin: 5px 0;
+  font-weight: bold;
+  margin-bottom: 15px;
+  letter-spacing: 0;
+}
+
+/* Form elements */
+label {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  margin-top: 20px;
+  display: inline-block;
+}
+
+input {
+  font-size: 16px;
+  padding: 5px 10px;
+}
+
+/* Checkout styles */
+.checkout-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 1000px;
+  border: 1px solid #ccc;
+  padding-top: 21px;
+  color: #555;
+  font-size: 1.5rem;
+}
+
+.checkout-circle.active {
+  background: var(--brand-primary);
+  border: 1px solid var(--brand-primary);
+  color: white;
+}
+
+.checkout-title {
+  margin-top: 20px;
+  color: #555;
+  font-size: 1.2rem;
+}
+
+/* Utility classes */
+.center {
+  text-align: center;
+}
+
+.remove {
+  cursor: pointer;
+}
+
+hr {
+  margin: 30px 0;
+  border: 0;
+  border-bottom: solid 2px var(--border);
+}
+
+hr.major {
+  margin: 4rem 0;
 }
 
 /* Hide desktop/mobile utilities */
-@media (min-width: 1024px) {
+@media (min-width: 1000px) {
   .hidden-desktop {
     display: none !important;
   }
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 999px) {
   .hidden-mobile {
     display: none !important;
   }
 }
 
-/* Brand styles */
-.brand {
-  font-family: 'Liu Jian Mao Cao', cursive;
+/* Blockquotes */
+blockquote {
+  border-left: solid 4px var(--border);
+  font-style: italic;
+  margin: 0 0 2rem 0;
+  padding: 1rem 0 1rem 2rem;
 }
 
-.navbar-heading {
-  font-family: 'Liu Jian Mao Cao', cursive;
-  font-size: 1.5rem;
-  letter-spacing: 0.05em;
+/* Code */
+code {
+  background: var(--border-bg);
+  border-radius: 5px;
+  border: solid 2px var(--border);
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+  margin: 0 0.25em;
+  padding: 0.25em 0.65em;
+}
+
+pre {
+  -webkit-overflow-scrolling: touch;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+  margin: 0 0 2rem 0;
+}
+
+pre code {
+  display: block;
+  line-height: 1.75em;
+  padding: 1em 1.5em;
+  overflow-x: auto;
+}
+
+/* Text alignment */
+.align-left {
+  text-align: left;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right;
 }
 
 /* Smooth scrolling */
@@ -105,12 +457,8 @@ html {
   border-radius: 2px;
 }
 
-/* Remove default button styles */
-button {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: inherit;
+/* Main content styling */
+main {
+  color: var(--body-text);
+  width: 100%;
 }

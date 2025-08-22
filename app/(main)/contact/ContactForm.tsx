@@ -59,9 +59,9 @@ export default function ContactForm() {
 
   if (formState.isSubmitted) {
     return (
-      <div className="rounded-lg border border-green-200 bg-green-50 p-6">
-        <h3 className="mb-2 text-lg font-semibold text-green-800">Thanks!</h3>
-        <p className="text-green-700">
+      <div className="border-brand-primary/20 bg-brand-primary/10 rounded-lg border p-6">
+        <h3 className="text-text-bold mb-2 text-lg font-semibold">Thanks!</h3>
+        <p className="text-body-text">
           Thanks for reaching out, I'll get back to you soon!
         </p>
       </div>
@@ -88,21 +88,21 @@ export default function ContactForm() {
           </div>
 
           {formState.error && (
-            <div className="mb-4 rounded-lg border border-red-200 bg-red-50 p-4">
-              <p className="text-red-700">{formState.error}</p>
+            <div className="border-brand-primary/30 bg-brand-primary/10 mb-4 rounded-lg border p-4">
+              <p className="text-text-bold">{formState.error}</p>
             </div>
           )}
 
           <div className="field mb-4">
             <label
-              className="label mb-2 block text-sm font-medium text-gray-700"
+              className="label text-text-bold mb-2 block text-sm font-medium"
               htmlFor="name"
             >
               Your name
             </label>
             <div className="control">
               <input
-                className="input w-full rounded-md border border-gray-300 px-3 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="input border-border focus:ring-brand-primary w-full rounded-md border px-3 py-2 focus:border-transparent focus:ring-2 focus:outline-none"
                 type="text"
                 name="name"
                 value={formState.name}
@@ -115,14 +115,14 @@ export default function ContactForm() {
 
           <div className="field mb-4">
             <label
-              className="label mb-2 block text-sm font-medium text-gray-700"
+              className="label text-text-bold mb-2 block text-sm font-medium"
               htmlFor="email"
             >
               Email
             </label>
             <div className="control">
               <input
-                className="input w-full rounded-md border border-gray-300 px-3 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="input border-border focus:ring-brand-primary w-full rounded-md border px-3 py-2 focus:border-transparent focus:ring-2 focus:outline-none"
                 type="email"
                 name="email"
                 value={formState.email}
@@ -135,14 +135,14 @@ export default function ContactForm() {
 
           <div className="field mb-6">
             <label
-              className="label mb-2 block text-sm font-medium text-gray-700"
+              className="label text-text-bold mb-2 block text-sm font-medium"
               htmlFor="message"
             >
               Message
             </label>
             <div className="control">
               <textarea
-                className="textarea w-full rounded-md border border-gray-300 px-3 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="textarea border-border focus:ring-brand-primary w-full rounded-md border px-3 py-2 focus:border-transparent focus:ring-2 focus:outline-none"
                 name="message"
                 value={formState.message}
                 onChange={handleChange}
@@ -155,7 +155,7 @@ export default function ContactForm() {
 
           <div className="field">
             <button
-              className="button rounded-md bg-blue-600 px-6 py-2 text-white hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+              className="button bg-brand-primary focus:ring-brand-primary rounded-md px-6 py-2 text-white hover:bg-orange-600 focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
               type="submit"
               disabled={formState.isSubmitting}
             >

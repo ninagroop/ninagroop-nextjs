@@ -8,14 +8,16 @@ import type { SignupFormProps, NewsletterModalProps } from './footer.types';
 const SkeletonLoader: React.FC = () => {
   return (
     <div className="animate-pulse">
-      <div className="h-72 w-80 bg-gray-200 rounded-md"></div>
+      <div className="bg-border-bg h-72 w-80 rounded-md"></div>
     </div>
   );
 };
 
 // Newsletter signup form with iframe
 export const SignupForm: React.FC<SignupFormProps> = ({ className }) => {
-  const [iframeLoading, setIframeLoading] = useState<'LOADING' | 'LOADED'>('LOADING');
+  const [iframeLoading, setIframeLoading] = useState<'LOADING' | 'LOADED'>(
+    'LOADING'
+  );
 
   const handleIframeLoad = () => {
     setIframeLoading('LOADED');
@@ -27,7 +29,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({ className }) => {
 
       <iframe
         className={cn(
-          'border border-gray-200 bg-white rounded-md',
+          'border-border rounded-md border bg-white',
           iframeLoading === 'LOADING' ? 'invisible absolute' : 'visible'
         )}
         src="https://ninagroop.substack.com/embed"
@@ -42,7 +44,10 @@ export const SignupForm: React.FC<SignupFormProps> = ({ className }) => {
 };
 
 // Newsletter modal component
-const NewsletterModal: React.FC<NewsletterModalProps> = ({ isOpen, onClose }) => {
+const NewsletterModal: React.FC<NewsletterModalProps> = ({
+  isOpen,
+  onClose,
+}) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -60,29 +65,26 @@ const NewsletterModal: React.FC<NewsletterModalProps> = ({ isOpen, onClose }) =>
   return (
     <>
       {/* Backdrop */}
-      <div
-        className="fixed inset-0 bg-black/60 z-50"
-        onClick={onClose}
-      />
+      <div className="fixed inset-0 z-50 bg-black/60" onClick={onClose} />
 
       {/* Modal content */}
-      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-[360px] bg-white rounded-lg shadow-xl">
+      <div className="fixed top-1/2 left-1/2 z-50 w-[360px] -translate-x-1/2 -translate-y-1/2 transform rounded-lg bg-white shadow-xl">
         <div className="p-6">
-          <h2 className="text-2xl font-bold mb-4">Welcome!</h2>
+          <h2 className="mb-4 text-2xl font-bold">Welcome!</h2>
 
           <div className="space-y-4">
-            <p className="text-center text-gray-700">
-              If you&apos;d like to hear from me in your inbox or you&apos;d like to receive
-              insight into your character strengths, sign up below. I&apos;d love to
-              send you my newsletter and some free resources that will empower
-              you.
+            <p className="text-body-text text-center">
+              If you&apos;d like to hear from me in your inbox or you&apos;d
+              like to receive insight into your character strengths, sign up
+              below. I&apos;d love to send you my newsletter and some free
+              resources that will empower you.
             </p>
 
             <a
               href="https://ninagroop.substack.com/subscribe?utm_source=ninagroop.com&simple=true&next=https%3A%2F%2Fninagroop.substack.com%2Farchive"
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full text-center px-4 py-2 bg-black text-white font-semibold rounded-md hover:bg-gray-800 transition-colors"
+              className="bg-brand-primary w-full rounded-md px-4 py-2 text-center font-semibold text-white transition-colors hover:bg-orange-600"
             >
               Sign Up
             </a>
@@ -91,7 +93,7 @@ const NewsletterModal: React.FC<NewsletterModalProps> = ({ isOpen, onClose }) =>
 
             <button
               onClick={onClose}
-              className="block w-full text-center text-gray-600 hover:text-gray-800 transition-colors"
+              className="text-text-light hover:text-text-bold block w-full text-center transition-colors"
             >
               Close
             </button>

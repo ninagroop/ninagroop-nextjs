@@ -27,30 +27,24 @@ export default async function AboutPage() {
   }
 
   return (
-    <main className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <>
+      <h1 className="main-heading text-text-bold mb-12 inline-block bg-white/80 px-[4vw] py-5 lg:max-w-[85vw] lg:px-5 lg:pl-[15vw] xl:max-w-[80vw] xl:pl-[20vw]">
+        {pageData.frontmatter.title}
+      </h1>
+
       <article
-        className="page mx-auto max-w-4xl"
+        className="article-body overflow-hidden bg-white/80 px-[4vw] py-[4vw] lg:w-full lg:px-[15vw] lg:py-12 xl:px-[20vw]"
         itemScope
         itemType="http://schema.org/Article"
       >
-        <header className="mb-8">
-          <h1
-            className="main-heading mb-4 text-4xl font-light"
-            itemProp="headline"
-          >
-            {pageData.frontmatter.title}
-          </h1>
-        </header>
-        <section
-          className="article-body prose prose-lg max-w-none"
-          itemProp="articleBody"
-        >
+        <div itemProp="articleBody">
           <MarkdownRenderer
             content={pageData.htmlContent || ''}
+            className="prose prose-lg prose-headings:font-normal prose-headings:text-text-bold prose-p:text-body-text prose-p:leading-relaxed prose-a:text-brand-orange prose-a:no-underline hover:prose-a:text-text-bold prose-a:border-b prose-a:border-dotted prose-a:border-text-light hover:prose-a:border-transparent prose-strong:text-text-bold prose-strong:font-semibold max-w-none"
             imagePath="/content/pages/about"
           />
-        </section>
+        </div>
       </article>
-    </main>
+    </>
   );
 }

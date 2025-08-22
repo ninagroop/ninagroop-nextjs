@@ -18,16 +18,14 @@ const Footer: React.FC<FooterProps> = ({
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-white border-t border-gray-200">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+    <footer className="border-border border-t bg-white">
+      <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
           {/* Left Column - About Nina */}
           <div className="space-y-6">
-            <h5 className="text-xl font-semibold text-gray-900">About Nina</h5>
+            <h5 className="text-text-bold text-xl font-semibold">About Nina</h5>
 
-            <p className="text-gray-700 leading-relaxed">
-              {footerBioText}
-            </p>
+            <p className="text-body-text leading-relaxed">{footerBioText}</p>
 
             {footerBioImage && (
               <div className="relative w-full max-w-[300px]">
@@ -49,10 +47,10 @@ const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Right Column - Connect and Meet Nina */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {/* Connect Section */}
             <div className="space-y-4">
-              <h5 className="text-xl font-semibold text-gray-900">Connect</h5>
+              <h5 className="text-text-bold text-xl font-semibold">Connect</h5>
 
               <div className="space-y-3">
                 {socialLinks.map((link, idx) => {
@@ -66,7 +64,7 @@ const Footer: React.FC<FooterProps> = ({
                       rel="noopener noreferrer"
                       className={cn(
                         'flex items-center gap-3',
-                        'text-gray-700 hover:text-gray-900',
+                        'text-body-text hover:text-text-bold',
                         'transition-colors duration-200',
                         'group'
                       )}
@@ -76,7 +74,7 @@ const Footer: React.FC<FooterProps> = ({
                         alt={link.title}
                         width={32}
                         height={32}
-                        className="flex-shrink-0 group-hover:opacity-80 transition-opacity"
+                        className="flex-shrink-0 transition-opacity group-hover:opacity-80"
                       />
                       <span className="font-medium">{link.title}</span>
                     </a>
@@ -87,11 +85,11 @@ const Footer: React.FC<FooterProps> = ({
 
             {/* Meet Nina Section */}
             <div className="space-y-4">
-              <h5 className="text-xl font-semibold text-gray-900">Meet Nina</h5>
+              <h5 className="text-text-bold text-xl font-semibold">
+                Meet Nina
+              </h5>
 
-              <p className="text-gray-700 leading-relaxed">
-                {footerMeetText}
-              </p>
+              <p className="text-body-text leading-relaxed">{footerMeetText}</p>
 
               <CalendlyButton className="w-full sm:w-auto">
                 Schedule Now
@@ -101,9 +99,11 @@ const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Footer Bottom */}
-        <div className="mt-12 pt-8 border-t border-gray-200">
-          <div className="text-sm text-gray-600 text-center md:text-left">
-            <span>© {currentYear} {siteTitle}</span>
+        <div className="border-border mt-12 border-t pt-8">
+          <div className="text-text-light text-center text-sm md:text-left">
+            <span>
+              © {currentYear} {siteTitle}
+            </span>
 
             <span className="mx-2">|</span>
 
@@ -113,7 +113,7 @@ const Footer: React.FC<FooterProps> = ({
                 href="https://nextjs.org"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-700 hover:text-gray-900 transition-colors"
+                className="text-brand-orange hover:text-text-bold transition-colors"
               >
                 Next.js
               </Link>
@@ -128,7 +128,7 @@ const Footer: React.FC<FooterProps> = ({
                     href={credit.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-700 hover:text-gray-900 transition-colors"
+                    className="text-brand-orange hover:text-text-bold transition-colors"
                   >
                     {credit.linktext}
                   </a>

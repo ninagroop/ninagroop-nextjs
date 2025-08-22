@@ -35,9 +35,9 @@ const CalendlyButton: React.FC<CalendlyButtonProps> = ({
   };
 
   const buttonClasses = cn(
-    'rounded-md bg-black px-6 py-3 font-semibold text-white',
-    'transition-colors duration-200 hover:bg-gray-800',
-    'focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none',
+    'rounded-md bg-brand-primary px-6 py-3 font-semibold text-white',
+    'transition-colors duration-200 hover:bg-orange-600',
+    'focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 focus:outline-none',
     className
   );
 
