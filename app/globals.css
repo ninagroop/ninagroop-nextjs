@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Liu+Jian+Mao+Cao&family=Montserrat:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&family=Raleway:wght@200;400;700&display=swap');
 @import 'tailwindcss';
-@import "tw-animate-css";
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -9,20 +9,26 @@
   --brand-primary: #d96528; /* Orange/rust - primary brand color */
   --brand-secondary: #03c1c1; /* Teal - secondary brand color */
 
-  /* Text Colors */
-  --body-text: rgb(58, 56, 52); /* Warm brown for body text */ /* Golden orange for links */
+  /* Custom Text Colors */
+  --body-text: rgb(58, 56, 52); /* Warm brown for body text */
+  --link-color: #ce812a; /* Golden orange for links */
   --foreground-bold: #313131; /* Dark gray for bold text */
   --foreground-light: rgba(0, 0, 0, 0.35); /* Light gray for muted text */
 
-  /* Background Colors */
-  --border: oklch(0.922 0 0);
+  /* Custom Background Colors */
+  --custom-background: #ffffff;
+  --border-custom: rgba(0, 0, 0, 0.125);
   --border-bg: rgba(0, 0, 0, 0.025);
   --border2: rgba(0, 0, 0, 0.25);
   --border2-bg: rgba(0, 0, 0, 0.075);
-  --accent: oklch(0.97 0 0);
-  --radius: 0.625rem;
+  --accent-custom: #865b33;
+
+  /* Shadcn System Colors */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
+  --border: oklch(0.922 0 0);
+  --accent: oklch(0.97 0 0);
+  --radius: 0.625rem;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -56,12 +62,12 @@
   /* Custom color palette */
   --color-brand-primary: var(--brand-primary);
   --color-brand-secondary: var(--brand-secondary);
-  --color-brand-orange: var(--foreground);
+  --color-brand-orange: var(--link-color);
   --color-body-text: var(--body-text);
   --color-text-bold: var(--foreground-bold);
   --color-text-light: var(--foreground-light);
-  --color-accent: var(--accent);
-  --color-border: var(--border);
+  --color-accent: var(--accent-custom);
+  --color-border: var(--border-custom);
   --color-border-bg: var(--border-bg);
 
   /* Font families */
@@ -108,6 +114,7 @@
 }
 
 body {
+  background: var(--custom-background);
   color: var(--body-text);
   font-family: var(--font-sans);
   font-size: 14pt;
@@ -218,7 +225,7 @@ h6 {
 
 /* Links */
 a {
-  color: var(--foreground);
+  color: var(--link-color);
   text-decoration: none;
   border-bottom: dotted 1px var(--foreground-light);
   transition:
@@ -272,7 +279,7 @@ i {
 }
 
 .brand-subtitle {
-  color: var(--foreground);
+  color: var(--link-color);
   font-size: 1.6rem;
   margin-top: 0.25rem;
   margin-bottom: 4rem;
@@ -442,7 +449,7 @@ input {
 hr {
   margin: 30px 0;
   border: 0;
-  border-bottom: solid 2px var(--border);
+  border-bottom: solid 2px var(--border-custom);
 }
 
 hr.major {
@@ -464,7 +471,7 @@ hr.major {
 
 /* Blockquotes */
 blockquote {
-  border-left: solid 4px var(--border);
+  border-left: solid 4px var(--border-custom);
   font-style: italic;
   margin: 0 0 2rem 0;
   padding: 1rem 0 1rem 2rem;
@@ -474,7 +481,7 @@ blockquote {
 code {
   background: var(--border-bg);
   border-radius: 5px;
-  border: solid 2px var(--border);
+  border: solid 2px var(--border-custom);
   font-family: 'Courier New', monospace;
   font-size: 0.9em;
   margin: 0 0.25em;

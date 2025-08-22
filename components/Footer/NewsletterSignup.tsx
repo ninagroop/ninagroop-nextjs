@@ -2,6 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 import type { SignupFormProps, NewsletterModalProps } from './footer.types';
 
 // Skeleton loader component
@@ -48,59 +54,46 @@ const NewsletterModal: React.FC<NewsletterModalProps> = ({
   isOpen,
   onClose,
 }) => {
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
-
-  if (!isOpen) return null;
-
   return (
-    <>
-      {/* Backdrop */}
-      <div className="fixed inset-0 z-50 bg-black/60" onClick={onClose} />
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent
+        className="w-[360px] max-w-[360px] bg-white shadow-xl"
+        showCloseButton={false}
+      >
+        <DialogHeader className="flex items-center">
+          <DialogTitle className="mb-4 text-2xl font-bold">
+            Welcome!
+          </DialogTitle>
+        </DialogHeader>
 
-      {/* Modal content */}
-      <div className="fixed top-1/2 left-1/2 z-50 w-[360px] -translate-x-1/2 -translate-y-1/2 transform rounded-lg bg-white shadow-xl">
-        <div className="p-6">
-          <h2 className="mb-4 text-2xl font-bold">Welcome!</h2>
+        <div className="flex flex-col gap-y-4">
+          <p className="text-body-text text-center">
+            If you&apos;d like to hear from me in your inbox or you&apos;d like
+            to receive insight into your character strengths, sign up below.
+            I&apos;d love to send you my newsletter and some free resources that
+            will empower you.
+          </p>
 
-          <div className="space-y-4">
-            <p className="text-body-text text-center">
-              If you&apos;d like to hear from me in your inbox or you&apos;d
-              like to receive insight into your character strengths, sign up
-              below. I&apos;d love to send you my newsletter and some free
-              resources that will empower you.
-            </p>
+          <a
+            href="https://ninagroop.substack.com/subscribe?utm_source=ninagroop.com&simple=true&next=https%3A%2F%2Fninagroop.substack.com%2Farchive"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-brand-primary block w-full rounded-md px-4 py-2 text-center font-semibold !text-white transition-colors hover:bg-orange-600"
+          >
+            Sign Up
+          </a>
 
-            <a
-              href="https://ninagroop.substack.com/subscribe?utm_source=ninagroop.com&simple=true&next=https%3A%2F%2Fninagroop.substack.com%2Farchive"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-brand-primary w-full rounded-md px-4 py-2 text-center font-semibold text-white transition-colors hover:bg-orange-600"
-            >
-              Sign Up
-            </a>
+          <SignupForm />
 
-            <SignupForm />
-
-            <button
-              onClick={onClose}
-              className="text-text-light hover:text-text-bold block w-full text-center transition-colors"
-            >
-              Close
-            </button>
-          </div>
+          <button
+            onClick={() => onClose()}
+            className="text-text-light hover:text-text-bold block w-full text-center transition-colors"
+          >
+            Close
+          </button>
         </div>
-      </div>
-    </>
+      </DialogContent>
+    </Dialog>
   );
 };
 
