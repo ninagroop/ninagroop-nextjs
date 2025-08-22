@@ -1,45 +1,25 @@
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { getPageBySlug } from '../../../lib/markdown';
-import MarkdownRenderer from '../../../lib/markdown-renderer';
 import ContactForm from './ContactForm';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const pageData = await getPageBySlug('contact');
+export const metadata: Metadata = {
+  title: 'Contact - Nina Groop',
+  description:
+    'Get in touch with Nina Groop for coaching inquiries, speaking engagements, or general questions.',
+};
 
-  return {
-    title: `${pageData?.frontmatter.title || 'Contact'} - Nina Groop`,
-    description:
-      'Get in touch with Nina Groop for coaching inquiries, speaking engagements, or general questions.',
-  };
-}
-
-export default async function ContactPage() {
-  const pageData = await getPageBySlug('contact');
-
-  if (!pageData) {
-    notFound();
-  }
-
+export default function ContactPage() {
   return (
     <>
       <h1 className="main-heading text-text-bold mb-12 inline-block bg-white/80 px-[4vw] py-5 lg:max-w-[85vw] lg:px-5 lg:pl-[15vw] xl:max-w-[80vw] xl:pl-[20vw]">
-        {pageData.frontmatter.title}
+        Contact
       </h1>
 
-      <article
-        className="article-body overflow-hidden bg-white/80 px-[4vw] py-[4vw] lg:w-full lg:px-[15vw] lg:py-12 xl:px-[20vw]"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
-        <div itemProp="articleBody">
-          <MarkdownRenderer
-            content={pageData.htmlContent || ''}
-            className="prose prose-lg prose-headings:font-normal prose-headings:text-text-bold prose-p:text-body-text prose-p:leading-relaxed prose-a:text-brand-orange prose-a:no-underline hover:prose-a:text-text-bold prose-a:border-b prose-a:border-dotted prose-a:border-text-light hover:prose-a:border-transparent prose-strong:text-text-bold prose-strong:font-semibold mb-8 max-w-none"
-          />
-        </div>
-
-        <ContactForm />
+      <article className="article-body overflow-hidden bg-white/80 px-[4vw] py-[4vw] lg:w-full lg:px-[15vw] lg:py-12 xl:px-[20vw]">
+        <section className="section">
+          <div className="container">
+            <ContactForm />
+          </div>
+        </section>
       </article>
     </>
   );
