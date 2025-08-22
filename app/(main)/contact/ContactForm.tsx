@@ -1,35 +1,61 @@
 'use client';
 
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { Button } from '@/components/ui/button';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+
+const contactSchema = z.object({
+  name: z
+    .string()
+    .min(1, 'Name is required')
+    .min(2, 'Name must be at least 2 characters'),
+  email: z.email('Invalid email address'),
+  message: z
+    .string()
+    .min(1, 'Message is required')
+    .min(10, 'Message must be at least 10 characters'),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
 
 export default function ContactForm() {
-  const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    message: '',
-    isSubmitting: false,
-    isSubmitted: false,
-    error: null as string | null,
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const form = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+    mode: 'onChange',
+    defaultValues: {
+      name: '',
+      email: '',
+      message: '',
+    },
   });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormState((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setFormState((prev) => ({ ...prev, isSubmitting: true, error: null }));
+  const onSubmit = async (data: ContactFormData) => {
+    setSubmitError(null);
 
     try {
-      const form = e.currentTarget;
-      const formData = new FormData(form);
+      // Create form data for Netlify
+      const formData = new FormData();
+      formData.append('form-name', 'contact');
+      formData.append('name', data.name);
+      formData.append('email', data.email);
+      formData.append('message', data.message);
 
-      // Submit to Netlify
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -37,29 +63,21 @@ export default function ContactForm() {
       });
 
       if (response.ok) {
-        setFormState((prev) => ({
-          ...prev,
-          isSubmitting: false,
-          isSubmitted: true,
-          name: '',
-          email: '',
-          message: '',
-        }));
+        setIsSubmitted(true);
+        form.reset();
       } else {
         throw new Error('Form submission failed');
       }
     } catch (error) {
-      setFormState((prev) => ({
-        ...prev,
-        isSubmitting: false,
-        error: 'There was an error sending your message. Please try again.',
-      }));
+      setSubmitError(
+        'There was an error sending your message. Please try again.'
+      );
     }
   };
 
-  if (formState.isSubmitted) {
+  if (isSubmitted) {
     return (
-      <div className="border-brand-primary/20 bg-brand-primary/10 rounded-lg border p-6">
+      <div className="border-brand-primary/20 bg-brand-primary/10 max-w-lg rounded-lg border p-6">
         <h3 className="text-text-bold mb-2 text-lg font-semibold">Thanks!</h3>
         <p className="text-body-text">
           Thanks for reaching out, I'll get back to you soon!
@@ -71,98 +89,102 @@ export default function ContactForm() {
   return (
     <section className="section mt-8">
       <div className="container">
-        <form
-          name="contact"
-          method="post"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
-          onSubmit={handleSubmit}
-          className="max-w-lg"
-        >
-          <input type="hidden" name="form-name" value="contact" />
-          <div hidden>
-            <label>
-              Don't fill this out:{' '}
-              <input name="bot-field" onChange={handleChange} />
-            </label>
-          </div>
-
-          {formState.error && (
-            <div className="border-brand-primary/30 bg-brand-primary/10 mb-4 rounded-lg border p-4">
-              <p className="text-text-bold">{formState.error}</p>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="max-w-lg space-y-6"
+            name="contact"
+            method="post"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+          >
+            {/* Hidden fields for Netlify */}
+            <input type="hidden" name="form-name" value="contact" />
+            <div hidden>
+              <label>
+                Don't fill this out: <input name="bot-field" />
+              </label>
             </div>
-          )}
 
-          <div className="field mb-4">
-            <label
-              className="label text-text-bold mb-2 block text-sm font-medium"
-              htmlFor="name"
-            >
-              Your name
-            </label>
-            <div className="control">
-              <input
-                className="input border-border focus:ring-brand-primary w-full rounded-md border px-3 py-2 focus:border-transparent focus:ring-2 focus:outline-none"
-                type="text"
-                name="name"
-                value={formState.name}
-                onChange={handleChange}
-                id="name"
-                required
-              />
-            </div>
-          </div>
+            {submitError && (
+              <Alert className="border-red-200 bg-red-50">
+                <AlertDescription className="text-red-800">
+                  {submitError}
+                </AlertDescription>
+              </Alert>
+            )}
 
-          <div className="field mb-4">
-            <label
-              className="label text-text-bold mb-2 block text-sm font-medium"
-              htmlFor="email"
-            >
-              Email
-            </label>
-            <div className="control">
-              <input
-                className="input border-border focus:ring-brand-primary w-full rounded-md border px-3 py-2 focus:border-transparent focus:ring-2 focus:outline-none"
-                type="email"
-                name="email"
-                value={formState.email}
-                onChange={handleChange}
-                id="email"
-                required
-              />
-            </div>
-          </div>
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-text-bold text-sm font-medium">
+                    Your name
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Enter your name"
+                      className="border-border focus:ring-brand-primary w-full rounded-md border px-3 py-2 focus:border-transparent focus:ring-2 focus:outline-none"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <div className="field mb-6">
-            <label
-              className="label text-text-bold mb-2 block text-sm font-medium"
-              htmlFor="message"
-            >
-              Message
-            </label>
-            <div className="control">
-              <textarea
-                className="textarea border-border focus:ring-brand-primary w-full rounded-md border px-3 py-2 focus:border-transparent focus:ring-2 focus:outline-none"
-                name="message"
-                value={formState.message}
-                onChange={handleChange}
-                id="message"
-                rows={5}
-                required
-              />
-            </div>
-          </div>
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-text-bold text-sm font-medium">
+                    Email
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      type="email"
+                      placeholder="Enter your email"
+                      className="border-border focus:ring-brand-primary w-full rounded-md border px-3 py-2 focus:border-transparent focus:ring-2 focus:outline-none"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <div className="field">
-            <button
-              className="button bg-brand-primary focus:ring-brand-primary rounded-md px-6 py-2 text-white hover:bg-orange-600 focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-text-bold text-sm font-medium">
+                    Message
+                  </FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="Enter your message"
+                      rows={5}
+                      className="border-border focus:ring-brand-primary w-full rounded-md border px-3 py-2 focus:border-transparent focus:ring-2 focus:outline-none"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <Button
               type="submit"
-              disabled={formState.isSubmitting}
+              disabled={form.formState.isSubmitting || !form.formState.isValid}
+              className="bg-brand-primary focus:ring-brand-primary rounded-md px-6 py-2 text-white hover:bg-orange-600 focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {formState.isSubmitting ? 'Sending...' : 'Send'}
-            </button>
-          </div>
-        </form>
+              {form.formState.isSubmitting ? 'Sending...' : 'Send'}
+            </Button>
+          </form>
+        </Form>
       </div>
     </section>
   );
