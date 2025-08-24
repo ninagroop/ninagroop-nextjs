@@ -49,19 +49,3 @@ export interface GridConfig {
   /** Whether to maintain aspect ratio */
   maintainAspectRatio?: boolean;
 }
-
-/**
- * Post grid item configuration
- */
-export interface PostGridItemProps {
-  /** Blog post data */
-  post: BlogPostWithMetadata;
-  /** Index in the grid for styling purposes */
-  index: number;
-  /** Card variant to use */
-  cardVariant?: BlogCardVariant;
-  /** Whether this item is featured */
-  featured?: boolean;
-  /** Priority for image loading */
-  priority?: boolean;
-}

@@ -6,7 +6,6 @@ import BlogCard from '../BlogCard';
 import {
   BlogPostGridProps,
   VerticalTilesGridProps,
-  PostGridItemProps,
 } from './BlogPostGrid.types';
 
 const BlogPostGrid: React.FC<BlogPostGridProps> = ({
@@ -50,38 +49,22 @@ const BlogPostGrid: React.FC<BlogPostGridProps> = ({
     <div className={cn('w-full', className)}>
       <ol className={cn(gridVariants[variant], 'list-none p-0')}>
         {filteredPosts.map((post, index) => (
-          <PostGridItem
+          <li
             key={post.slug}
-            post={post}
-            index={index}
-            featured={featured}
-            cardVariant={variant === 'vertical' ? 'vertical' : 'featured'}
-            priority={index < 3} // Prioritize loading for first 3 images
-          />
+            className="list-none transition-opacity duration-300 hover:opacity-70"
+          >
+            <BlogCard
+              post={post}
+              variant={variant === 'vertical' ? 'vertical' : 'featured'}
+              featured={featured}
+              priority={index < 3}
+              showDate={false}
+              className="h-full"
+            />
+          </li>
         ))}
       </ol>
     </div>
-  );
-};
-
-const PostGridItem: React.FC<PostGridItemProps> = ({
-  post,
-  index,
-  featured,
-  cardVariant = 'featured',
-  priority = false,
-}) => {
-  return (
-    <li className="list-none transition-opacity duration-300 hover:opacity-70">
-      <BlogCard
-        post={post}
-        variant={cardVariant}
-        featured={featured}
-        priority={priority}
-        showDate={false}
-        className="h-full"
-      />
-    </li>
   );
 };
 
