@@ -16,9 +16,7 @@ export default function ContactPage() {
 
       <article className="article-body overflow-hidden bg-white/80 px-[4vw] py-[4vw] lg:w-full lg:px-[15vw] lg:py-12 xl:px-[20vw]">
         <section>
-          <div>
-            <ContactForm />
-          </div>
+          <ContactForm />
         </section>
       </article>
     </>

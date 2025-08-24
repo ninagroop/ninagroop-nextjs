@@ -87,108 +87,102 @@ export default function ContactForm() {
   }
 
   return (
-    <section className="mt-8">
-      <div>
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="flex max-w-lg flex-col gap-y-2"
-            name="contact"
-            method="post"
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex max-w-lg flex-col gap-y-2"
+        name="contact"
+        method="post"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+      >
+        {/* Hidden fields for Netlify */}
+        <input type="hidden" name="form-name" value="contact" />
+        <div hidden>
+          <label>
+            Don't fill this out: <input name="bot-field" />
+          </label>
+        </div>
+
+        {submitError && (
+          <Alert className="border-red-200 bg-red-50">
+            <AlertDescription className="text-red-800">
+              {submitError}
+            </AlertDescription>
+          </Alert>
+        )}
+
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-text-bold text-sm font-medium">
+                Your name
+              </FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="Enter your name"
+                  className="border-border focus:ring-brand-primary w-full rounded-md border px-3 py-2 focus:border-transparent focus:ring-2 focus:outline-none"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-text-bold text-sm font-medium">
+                Email
+              </FormLabel>
+              <FormControl>
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="border-border focus:ring-brand-primary w-full rounded-md border px-3 py-2 focus:border-transparent focus:ring-2 focus:outline-none"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="message"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-text-bold text-sm font-medium">
+                Message
+              </FormLabel>
+              <FormControl>
+                <Textarea
+                  placeholder="Enter your message"
+                  rows={5}
+                  className="border-border focus:ring-brand-primary w-full rounded-md border px-3 py-2 focus:border-transparent focus:ring-2 focus:outline-none"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <div className="pt-4">
+          <Button
+            type="submit"
+            disabled={form.formState.isSubmitting || !form.formState.isValid}
+            className="bg-brand-primary focus:ring-brand-primary mt-2 rounded-md px-6 py-2 text-white hover:bg-orange-600 focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {/* Hidden fields for Netlify */}
-            <input type="hidden" name="form-name" value="contact" />
-            <div hidden>
-              <label>
-                Don't fill this out: <input name="bot-field" />
-              </label>
-            </div>
-
-            {submitError && (
-              <Alert className="border-red-200 bg-red-50">
-                <AlertDescription className="text-red-800">
-                  {submitError}
-                </AlertDescription>
-              </Alert>
-            )}
-
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-text-bold text-sm font-medium">
-                    Your name
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Enter your name"
-                      className="border-border focus:ring-brand-primary w-full rounded-md border px-3 py-2 focus:border-transparent focus:ring-2 focus:outline-none"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-text-bold text-sm font-medium">
-                    Email
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      type="email"
-                      placeholder="Enter your email"
-                      className="border-border focus:ring-brand-primary w-full rounded-md border px-3 py-2 focus:border-transparent focus:ring-2 focus:outline-none"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="message"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-text-bold text-sm font-medium">
-                    Message
-                  </FormLabel>
-                  <FormControl>
-                    <Textarea
-                      placeholder="Enter your message"
-                      rows={5}
-                      className="border-border focus:ring-brand-primary w-full rounded-md border px-3 py-2 focus:border-transparent focus:ring-2 focus:outline-none"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className="pt-4">
-              <Button
-                type="submit"
-                disabled={
-                  form.formState.isSubmitting || !form.formState.isValid
-                }
-                className="bg-brand-primary focus:ring-brand-primary mt-2 rounded-md px-6 py-2 text-white hover:bg-orange-600 focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                {form.formState.isSubmitting ? 'Sending...' : 'Send'}
-              </Button>
-            </div>
-          </form>
-        </Form>
-      </div>
-    </section>
+            {form.formState.isSubmitting ? 'Sending...' : 'Send'}
+          </Button>
+        </div>
+      </form>
+    </Form>
   );
 }

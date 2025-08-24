@@ -7,9 +7,7 @@ interface BioProps {
 
 const Bio: React.FC<BioProps> = ({ className = '' }) => {
   return (
-    <div
-      className={`mb-8 flex items-start gap-4 rounded-lg bg-white/80 p-6 ${className}`}
-    >
+    <div className={`mb-8 flex items-start gap-4 bg-white/80 p-6 ${className}`}>
       <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-full">
         <Image
           src="/content/home/nina-bio.jpg"
