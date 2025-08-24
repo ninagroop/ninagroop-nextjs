@@ -1,5 +1,5 @@
 import { getAllPosts } from '@/lib/markdown';
-import Bio from '@/components/Bio';
+import Bio from '@/components/blog/Bio';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';

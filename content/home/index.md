@@ -44,12 +44,12 @@ footercredits:
 
 ![](stoolb-w.jpg '#position=relative;float=right;width=50%;margin=0 0 20px 20px;')
 
-- Writing & Editing – Thoughtful, intuitive support to shape your story, refine your voice, and say what matters
-- Grant Writing – Turning bold ideas into funded realities with clarity and heart
-- Life Coaching – Forward-looking, compassionate guidance for life’s transitions and turning points
-- My Writing – Poetry, essays, and true stories from a life of listening
+- Writing & Editing – Thoughtful, intuitive support to shape your story, refine your voice, and say what matters
+- Grant Writing – Turning bold ideas into funded realities with clarity and heart
+- Life Coaching – Forward-looking, compassionate guidance for life's transitions and turning points
+- My Writing – Poetry, essays, and true stories from a life of listening
 
-<strong>Let’s bring your ideas — and your story — to life.</strong>
+**Let's bring your ideas — and your story — to life.**
 
 <br />
 

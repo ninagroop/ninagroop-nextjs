@@ -93,8 +93,86 @@ function generateSlugFromPath(
  * Process markdown content to HTML
  */
 async function markdownToHtml(markdown: string): Promise<string> {
-  const result = await remark().use(html).process(markdown);
-  return result.toString();
+  // Preserve custom HTML tags by temporarily replacing them with placeholders
+  const customTagsMap = new Map<string, string>();
+  let tagCounter = 0;
+
+  // Extract and preserve custom tags
+  let processedMarkdown = markdown.replace(
+    /<(vertical-tiles-grid|post-grid|featured-products|calendly-button)([^>]*)>([\s\S]*?)<\/\1>/gi,
+    (match) => {
+      const placeholder = `CUSTOM_TAG_PLACEHOLDER_${tagCounter++}`;
+      customTagsMap.set(placeholder, match);
+      return placeholder;
+    }
+  );
+
+  // Process markdown to HTML
+  const result = await remark().use(html).process(processedMarkdown);
+  let htmlContent = result.toString();
+
+  // Process images with CSS attributes (e.g., ![](image.jpg '#css-here'))
+  htmlContent = htmlContent.replace(/<img([^>]*?)>/gi, (match, attributes) => {
+    // Extract src and title attributes
+    const srcMatch = attributes.match(/src="([^"]*?)"/);
+    const titleMatch = attributes.match(/title="([^"]*?)"/);
+
+    if (!srcMatch || !titleMatch) return match;
+
+    const src = srcMatch[1];
+    const title = titleMatch[1];
+
+    // Check if the title contains CSS attributes with # prefix
+    const cssMatch = title.match(/^#(.+)$/);
+    if (cssMatch) {
+      const cssStyles = cssMatch[1];
+
+      // Use wrapper div approach for cleaner styling
+      let wrapperClasses = [];
+
+      if (
+        cssStyles.includes('position=relative') ||
+        cssStyles.includes('position:relative')
+      ) {
+        wrapperClasses.push('relative');
+      }
+      if (
+        cssStyles.includes('float=right') ||
+        cssStyles.includes('float:right')
+      ) {
+        wrapperClasses.push('float-right');
+      }
+      if (cssStyles.includes('width=50%') || cssStyles.includes('width:50%')) {
+        wrapperClasses.push('w-1/2');
+      }
+      if (
+        cssStyles.includes('margin=0 0 20px 20px') ||
+        cssStyles.includes('margin:0 0 20px 20px')
+      ) {
+        wrapperClasses.push('mb-5 ml-5');
+      }
+
+      // Wrap image in a div with the styling
+      return `<div class="${wrapperClasses.join(' ')}"><img src="${src}" alt="" class="w-full h-auto"></div>`;
+    }
+    return match;
+  });
+
+  // Add clear div before vertical tiles since remark strips the clear br tag
+  htmlContent = htmlContent.replace(
+    /(<p>CUSTOM_TAG_PLACEHOLDER_0<\/p>)/gi,
+    '<div class="clear-both"></div>$1'
+  );
+
+  // Remove empty p tags that cause layout issues
+  htmlContent = htmlContent.replace(/<p>\s*<\/p>/gi, '');
+
+  // Restore custom tags
+  for (const [placeholder, originalTag] of customTagsMap) {
+    htmlContent = htmlContent.replace(placeholder, originalTag);
+  }
+
+  return htmlContent;
 }
 
 /**

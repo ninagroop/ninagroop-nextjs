@@ -1,4 +1,4 @@
-import { getHomeContent } from '@/lib/markdown';
+import { getHomeContent, getAllPosts } from '@/lib/markdown';
 import MarkdownRenderer from '@/lib/markdown-renderer';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 
 export default async function HomePage() {
   const homeContent = await getHomeContent();
+  const posts = await getAllPosts();
 
   if (!homeContent) {
     notFound();
@@ -42,7 +43,9 @@ export default async function HomePage() {
         <div itemProp="description">
           <MarkdownRenderer
             content={htmlContent}
-            className="prose prose-lg text-body-text max-w-none"
+            className="text-body-text max-w-none"
+            posts={posts}
+            imagePath="/content/home"
           />
         </div>
       </article>
