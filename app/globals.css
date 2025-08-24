@@ -340,18 +340,6 @@ i {
 }
 
 /* Buttons */
-button {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: inherit;
-  color: var(--foreground-bold);
-  font-weight: 700;
-  transition: 0.3s all ease;
-}
-
 button.purchase {
   background: var(--brand-primary);
   color: white;

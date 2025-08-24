@@ -92,7 +92,7 @@ export default function ContactForm() {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="max-w-lg space-y-6"
+            className="flex max-w-lg flex-col gap-y-2"
             name="contact"
             method="post"
             data-netlify="true"
@@ -175,14 +175,17 @@ export default function ContactForm() {
                 </FormItem>
               )}
             />
-
-            <Button
-              type="submit"
-              disabled={form.formState.isSubmitting || !form.formState.isValid}
-              className="bg-brand-primary focus:ring-brand-primary rounded-md px-6 py-2 text-white hover:bg-orange-600 focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              {form.formState.isSubmitting ? 'Sending...' : 'Send'}
-            </Button>
+            <div className="pt-4">
+              <Button
+                type="submit"
+                disabled={
+                  form.formState.isSubmitting || !form.formState.isValid
+                }
+                className="bg-brand-primary focus:ring-brand-primary mt-2 rounded-md px-6 py-2 text-white hover:bg-orange-600 focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {form.formState.isSubmitting ? 'Sending...' : 'Send'}
+              </Button>
+            </div>
           </form>
         </Form>
       </div>
