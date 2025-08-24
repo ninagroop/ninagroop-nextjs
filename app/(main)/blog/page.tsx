@@ -35,8 +35,8 @@ export default async function BlogPage() {
       </h1>
 
       <div className="article-body overflow-hidden bg-white/80 px-[4vw] py-[4vw] lg:w-full lg:px-[15vw] lg:py-12 xl:px-[20vw]">
-        <div className="featured-grid">
-          <ol className="featured-block grid list-none gap-5 p-0 md:grid-cols-2 lg:grid-cols-3">
+        <div>
+          <ol className="grid list-none gap-5 p-0 md:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => {
               const title = post.frontmatter.title;
               const hasImage = post.frontmatter.featuredimage;
@@ -46,7 +46,7 @@ export default async function BlogPage() {
               return (
                 <li
                   key={post.slug}
-                  className="featured-post-tile relative p-0 transition-opacity hover:opacity-70"
+                  className="relative p-0 transition-opacity hover:opacity-70"
                 >
                   <Link
                     href={post.slug}
@@ -54,12 +54,12 @@ export default async function BlogPage() {
                     itemProp="url"
                   >
                     <article
-                      className="post-list-item relative"
+                      className="relative"
                       itemScope
                       itemType="http://schema.org/Article"
                     >
-                      <div className="featured-post-wrapper relative">
-                        <div className="featured-image relative aspect-square overflow-hidden">
+                      <div className="relative">
+                        <div className="relative aspect-square overflow-hidden">
                           <Image
                             src={`/content/blog/${post.imageBasePath}/${post.frontmatter.featuredimage}`}
                             alt={title}
@@ -68,7 +68,7 @@ export default async function BlogPage() {
                             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           />
                         </div>
-                        <div className="featured-footer absolute bottom-0 left-0 w-full bg-gradient-to-t from-white/55 via-white/85 to-white/90 p-2.5">
+                        <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-white/55 via-white/85 to-white/90 p-2.5">
                           <header>
                             <h4 className="m-0 text-base">
                               <span
@@ -79,7 +79,7 @@ export default async function BlogPage() {
                               </span>
                             </h4>
                           </header>
-                          <section className="featured-description block h-px overflow-hidden">
+                          <section className="block h-px overflow-hidden">
                             <p
                               className="text-body-text text-sm"
                               dangerouslySetInnerHTML={{

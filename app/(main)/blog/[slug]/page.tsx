@@ -84,14 +84,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <>
-      <article
-        className="blog-post"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
+      <article itemScope itemType="http://schema.org/Article">
         {/* Featured Image */}
         {frontmatter.featuredimage && (
-          <div className="featured-image-container relative mb-8 h-64 w-full overflow-hidden md:h-80 lg:h-96">
+          <div className="relative mb-8 h-64 w-full overflow-hidden md:h-80 lg:h-96">
             <Image
               src={`/content/blog/${imageBasePath}/${frontmatter.featuredimage}`}
               alt={frontmatter.title}
@@ -113,7 +109,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </h1>
 
           {/* Article Meta */}
-          <div className="article-meta text-text-light bg-white/60 px-[4vw] py-2 text-sm lg:px-[15vw] xl:px-[20vw]">
+          <div className="text-text-light bg-white/60 px-[4vw] py-2 text-sm lg:px-[15vw] xl:px-[20vw]">
             <time
               dateTime={frontmatter.date}
               itemProp="datePublished"
@@ -121,9 +117,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             >
               {formattedDate}
             </time>
-            {readingTime && (
-              <span className="reading-time">{readingTime} min read</span>
-            )}
+            {readingTime && <span>{readingTime} min read</span>}
           </div>
         </header>
 
@@ -140,7 +134,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <hr className="border-border my-12 border-0 border-b-2" />
 
           {/* Post Navigation */}
-          <nav className="blog-post-nav" aria-label="Blog post navigation">
+          <nav aria-label="Blog post navigation">
             <ul className="flex list-none flex-wrap justify-between gap-4 p-0">
               <li className="min-w-0 flex-1">
                 {adjacentPosts.previous && (

@@ -15,13 +15,13 @@ const VerticalTilesGrid: React.FC<VerticalTilesGridProps> = ({ children }) => {
   );
 
   return (
-    <div className="vertical-tiles-grid mb-8">
-      <ol className="featured-block vertical-tiles grid list-none gap-5 p-0 lg:grid-rows-3">
+    <div className="mb-8">
+      <ol className="grid list-none gap-5 p-0 lg:grid-rows-3">
         {filteredChildren.map((child, index) => (
           <li key={index} className="relative p-0">
-            <article className="post-list-item">
+            <article>
               <div
-                className={`featured-post-wrapper relative block h-56 min-w-full overflow-hidden p-4 transition-opacity hover:opacity-70 md:h-52 ${
+                className={`relative block h-56 min-w-full overflow-hidden p-4 transition-opacity hover:opacity-70 md:h-52 ${
                   index === 0
                     ? 'bg-gradient-to-br from-transparent to-[#63a9b6]'
                     : index === 1
@@ -49,7 +49,7 @@ interface PostGridProps {
 const PostGrid: React.FC<PostGridProps> = ({ featured = true, count = 3 }) => {
   // For now, render a placeholder since we'd need to implement the blog data fetching
   return (
-    <div className="post-grid mb-8">
+    <div className="mb-8">
       <div className="bg-border-bg rounded-lg p-8 text-center">
         <p className="text-body-text">Featured Blog Posts</p>
         <p className="text-text-light text-sm">
@@ -69,7 +69,7 @@ interface CalendlyButtonProps {
 const CalendlyButton: React.FC<CalendlyButtonProps> = ({ children, url }) => {
   return (
     <button
-      className="calendly-button rounded bg-orange-600 px-6 py-3 text-white transition-colors hover:bg-orange-700"
+      className="rounded bg-orange-600 px-6 py-3 text-white transition-colors hover:bg-orange-700"
       onClick={() => {
         if (url) {
           window.open(url, '_blank');
@@ -94,7 +94,7 @@ const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
 }) => {
   // For now, render a placeholder since we'd need to implement Stripe product data fetching
   return (
-    <div className="featured-products mb-8">
+    <div className="mb-8">
       <div className="bg-border-bg rounded-lg p-8 text-center">
         <p className="text-body-text">Featured Products</p>
         <p className="text-text-light text-sm">
@@ -179,7 +179,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
                       {title}
                     </h2>
                     {imgSrc && (
-                      <div className="img-wrapper absolute top-0 right-0 h-full w-1/2 overflow-hidden md:relative md:mt-4 md:w-full">
+                      <div className="absolute top-0 right-0 h-full w-1/2 overflow-hidden md:relative md:mt-4 md:w-full">
                         <Image
                           src={`/content/home/${imgSrc}`}
                           alt={title}

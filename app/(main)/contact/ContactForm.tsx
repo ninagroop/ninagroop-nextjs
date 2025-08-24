@@ -87,8 +87,8 @@ export default function ContactForm() {
   }
 
   return (
-    <section className="section mt-8">
-      <div className="container">
+    <section className="mt-8">
+      <div>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
