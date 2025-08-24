@@ -17,7 +17,10 @@ export function middleware(request: NextRequest) {
     }
 
     // For admin config and assets, pass through
-    if (pathname.startsWith('/admin/config') || pathname.startsWith('/admin/preview')) {
+    if (
+      pathname.startsWith('/admin/config') ||
+      pathname.startsWith('/admin/preview')
+    ) {
       return NextResponse.next();
     }
   }
