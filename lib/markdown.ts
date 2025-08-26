@@ -98,7 +98,7 @@ async function markdownToHtml(markdown: string): Promise<string> {
   let tagCounter = 0;
 
   // Extract and preserve custom tags
-  let processedMarkdown = markdown.replace(
+  const processedMarkdown = markdown.replace(
     /<(vertical-tiles-grid|post-grid|featured-products|calendly-button)([^>]*)>([\s\S]*?)<\/\1>/gi,
     (match) => {
       const placeholder = `CUSTOM_TAG_PLACEHOLDER_${tagCounter++}`;
@@ -128,7 +128,7 @@ async function markdownToHtml(markdown: string): Promise<string> {
       const cssStyles = cssMatch[1];
 
       // Use wrapper div approach for cleaner styling
-      let wrapperClasses = [];
+      const wrapperClasses = [];
 
       if (
         cssStyles.includes('position=relative') ||

@@ -185,7 +185,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   // Process the content to handle custom components
   // Enhanced markdown renderer with custom components
   const processedContent = React.useMemo(() => {
-    let processed = processImagePaths(content, imagePath);
+    const processed = processImagePaths(content, imagePath);
 
     // Function to split content around a tag and render components in correct position
     const renderContentWithCustomTags = (htmlContent: string) => {
@@ -334,7 +334,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
         dangerouslySetInnerHTML={{ __html: processed }}
       />
     );
-  }, [content, className, imagePath]);
+  }, [content, className, imagePath, posts]);
 
   return <>{processedContent}</>;
 };

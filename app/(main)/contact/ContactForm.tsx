@@ -50,7 +50,7 @@ export default function ContactForm() {
 
     try {
       // Create form data for Netlify
-      const formData = new FormData();
+      const formData = new URLSearchParams();
       formData.append('form-name', 'contact');
       formData.append('name', data.name);
       formData.append('email', data.email);
@@ -59,7 +59,7 @@ export default function ContactForm() {
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData as any).toString(),
+        body: formData.toString(),
       });
 
       if (response.ok) {
@@ -68,7 +68,7 @@ export default function ContactForm() {
       } else {
         throw new Error('Form submission failed');
       }
-    } catch (error) {
+    } catch {
       setSubmitError(
         'There was an error sending your message. Please try again.'
       );
@@ -80,7 +80,7 @@ export default function ContactForm() {
       <div className="border-brand-primary/20 bg-brand-primary/10 max-w-lg rounded-lg border p-6">
         <h3 className="text-text-bold mb-2 text-lg font-semibold">Thanks!</h3>
         <p className="text-body-text">
-          Thanks for reaching out, I'll get back to you soon!
+          {`Thanks for reaching out, I'll get back to you soon!`}
         </p>
       </div>
     );
@@ -100,7 +100,7 @@ export default function ContactForm() {
         <input type="hidden" name="form-name" value="contact" />
         <div hidden>
           <label>
-            Don't fill this out: <input name="bot-field" />
+            <input name="bot-field" />
           </label>
         </div>
 

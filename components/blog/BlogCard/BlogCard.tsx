@@ -10,7 +10,6 @@ const BlogCard: React.FC<BlogCardVariantProps> = ({
   post,
   className,
   variant = 'default',
-  showFullDescription = false,
   showDate = true,
   featured = false,
   priority = false,

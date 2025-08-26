@@ -1,5 +1,4 @@
 import { BlogPostWithMetadata } from '@/types/content.types';
-import { BlogCardVariant } from '../BlogCard/BlogCard.types';
 
 /**
  * Props for the BlogPostGrid component

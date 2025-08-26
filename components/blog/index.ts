@@ -12,7 +12,6 @@ export type {
   BlogPostGridVariant,
   VerticalTilesGridProps,
   GridConfig,
-  PostGridItemProps,
 } from './PostGrid';
 
 export { default as Bio } from './Bio';

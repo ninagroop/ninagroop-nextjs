@@ -4,5 +4,4 @@ export type {
   BlogPostGridVariant,
   VerticalTilesGridProps,
   GridConfig,
-  PostGridItemProps,
 } from './BlogPostGrid.types';
