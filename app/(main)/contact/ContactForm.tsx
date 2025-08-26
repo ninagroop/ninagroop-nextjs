@@ -56,7 +56,7 @@ export default function ContactForm() {
       formData.append('email', data.email);
       formData.append('message', data.message);
 
-      const response = await fetch('/', {
+      const response = await fetch('/_forms.html', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: formData.toString(),
