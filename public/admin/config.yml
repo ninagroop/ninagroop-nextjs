@@ -24,8 +24,8 @@ collections:
     folder: 'content/blog'
     create: true
     slug: 'index'
-    media_folder: '/public/content/blog'
-    public_folder: '/content/blog'
+    media_folder: '/public/content/blog/{{year}}/{{month}}/{{title}}'
+    public_folder: '/content/blog/{{year}}/{{month}}/{{title}}'
     path: '{{year}}/{{month}}/{{title}}/index'
     editor:
       preview: true
