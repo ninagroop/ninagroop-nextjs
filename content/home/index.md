@@ -25,10 +25,15 @@ footerbiotext: Nina is a life coach, author, editor, and speaker. If she's not
   at her desk, you'll probably find her wandering in the woods looking for
   birds.
 sociallinks:
-  - title: Instagram
-    url: http://instagram.com/ninagroopcoaching
-  - title: Facebook
-    url: http://facebook.com/ninagroop
+  # - title: Instagram
+  #   url: http://instagram.com/ninagroopcoaching
+  #   icon: instagram.svg
+  # - title: Facebook
+  #   url: http://facebook.com/ninagroop
+  #   icon: facebook.svg
+  - title: Substack
+    url: https://substack.com/@ninagroop
+    icon: substack.png
 footermeettext: Schedule a free, no-obligation introductory session to learn how
   we can work together to turn the page and help you write your next chapter.
 footercredits:
