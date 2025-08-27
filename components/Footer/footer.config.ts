@@ -31,22 +31,3 @@ export async function getFooterData(): Promise<FooterProps | null> {
     socialLinks: frontmatter.sociallinks || [],
   };
 }
-
-/**
- * Get social media icon based on URL
- */
-export function getSocialIcon(url: string): string {
-  if (url.includes('twitter') || url.includes('x.com')) {
-    return 'twitter';
-  } else if (url.includes('instagram')) {
-    return 'instagram';
-  } else if (url.includes('facebook')) {
-    return 'facebook';
-  } else if (url.includes('youtube')) {
-    return 'youtube';
-  } else if (url.includes('substack')) {
-    return 'substack';
-  } else {
-    return 'earth';
-  }
-}

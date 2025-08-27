@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import type { FooterProps } from './footer.types';
-import { getSocialIcon } from './footer.config';
 import CalendlyButton from './CalendlyButton';
 import NewsletterSignup from './NewsletterSignup';
 
@@ -54,8 +53,6 @@ const Footer: React.FC<FooterProps> = ({
 
               <div className="space-y-3">
                 {socialLinks.map((link, idx) => {
-                  const iconName = getSocialIcon(link.url);
-
                   return (
                     <a
                       key={idx}
