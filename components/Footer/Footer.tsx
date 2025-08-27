@@ -70,7 +70,7 @@ const Footer: React.FC<FooterProps> = ({
                       )}
                     >
                       <Image
-                        src={`/images/${iconName}.svg`}
+                        src={`/images/${link.icon}`}
                         alt={link.title}
                         width={32}
                         height={32}

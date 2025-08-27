@@ -13,7 +13,8 @@ export async function getFooterData(): Promise<FooterProps | null> {
     return {
       siteTitle: siteMetadata.title,
       footerBioText: 'Nina is a life coach, author, editor, and speaker.',
-      footerMeetText: 'Schedule a free introductory session to learn how we can work together.',
+      footerMeetText:
+        'Schedule a free introductory session to learn how we can work together.',
       footerCredits: [],
       socialLinks: [],
     };
@@ -43,6 +44,8 @@ export function getSocialIcon(url: string): string {
     return 'facebook';
   } else if (url.includes('youtube')) {
     return 'youtube';
+  } else if (url.includes('substack')) {
+    return 'substack';
   } else {
     return 'earth';
   }
