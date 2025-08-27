@@ -18,6 +18,7 @@ export interface NavigationItem {
 export interface SocialLink {
   title: string;
   url: string;
+  icon: string;
 }
 
 /**
