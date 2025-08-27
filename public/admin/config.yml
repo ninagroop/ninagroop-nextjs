@@ -25,7 +25,7 @@ collections:
     create: true
     slug: 'index'
     media_folder: '/public/content/blog/{{year}}/{{month}}/{{title}}'
-    public_folder: '/content/blog/{{year}}/{{month}}/{{title}}'
+    public_folder: ''
     path: '{{year}}/{{month}}/{{title}}/index'
     editor:
       preview: true
