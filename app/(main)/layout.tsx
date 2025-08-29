@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '@/components/Header';
 import Footer, { getFooterData } from '@/components/Footer';
 import BackgroundImage from '@/components/BackgroundImage';
-import { navigationItems, siteMetadata } from '@/lib/navigation';
+import { siteMetadata } from '@/lib/navigation';
 import { getHomeContent } from '@/lib/markdown';
 
 export default async function MainLayout({
@@ -12,6 +12,14 @@ export default async function MainLayout({
 }) {
   const footerData = await getFooterData();
   const homeContent = await getHomeContent();
+
+  // Transform CMS navigation to match NavItem interface
+  const navigationItems =
+    homeContent?.frontmatter?.navigation?.map((item) => ({
+      title: item.title,
+      slug: item.slug,
+      showCartIndicator: item.showcartindicator || false,
+    })) || [];
 
   // Default to shifaaz-shamoon if no featured image is specified
   const backgroundImageSrc = homeContent?.frontmatter?.featuredimage
@@ -23,7 +31,9 @@ export default async function MainLayout({
       <div id="page-wrapper">
         <Header
           siteTitle={siteMetadata.title}
-          siteDescription={siteMetadata.description}
+          siteDescription={
+            homeContent?.frontmatter?.tagline || siteMetadata.description
+          }
           nav={navigationItems}
         />
         <main className="min-h-screen">{children}</main>
