@@ -17,31 +17,32 @@ navigation:
   - title: Checkout
     slug: /checkout
     showcartindicator: true
+  - showcartindicator: false
+    title: Speaking
+    slug: /speaking
 tagline: Welcome – The Next Chapter Begins Here.
-homequote: I’m Nina Groop — writer, editor, grant writer, and life coach — and I help people and organizations tell their stories. Whether you're seeking thoughtful editing, strategic grant writing, or personal support as you write a new future, I’m here to help you connect with your voice and make your message clear.
+homequote: I’m Nina Groop — writer, editor, grant writer, and life coach — and I
+  help people and organizations tell their stories. Whether you're seeking
+  thoughtful editing, strategic grant writing, or personal support as you write
+  a new future, I’m here to help you connect with your voice and make your
+  message clear.
 featuredimage: typewriter_garden_bg.jpg
 footerbioimage: nina-bio.jpg
 footerbiotext: Nina is a life coach, author, editor, and speaker. If she's not
   at her desk, you'll probably find her wandering in the woods looking for
   birds.
 sociallinks:
-  # - title: Instagram
-  #   url: http://instagram.com/ninagroopcoaching
-  #   icon: instagram.svg
-  # - title: Facebook
-  #   url: http://facebook.com/ninagroop
-  #   icon: facebook.svg
   - title: Substack
     url: https://substack.com/@ninagroop
     icon: substack.png
 footermeettext: Schedule a free, no-obligation introductory session to learn how
   we can work together to turn the page and help you write your next chapter.
 footercredits:
-  - text: 'Photo credit: Juniper Studios Photography'
-    linktext: '@juniperstudiosphotography '
+  - text: "Photo credit: Juniper Studios Photography"
+    linktext: "@juniperstudiosphotography "
     url: http://instragram.com/juniperstudiosphotography
-  - linktext: '@laura_nicole_robinson'
-    text: 'Photo credit: Laura Robinson'
+  - linktext: "@laura_nicole_robinson"
+    text: "Photo credit: Laura Robinson"
     url: http://instragram.com/laura_nicole_robinson
 ---
 
