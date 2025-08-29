@@ -1,30 +1,59 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getPageBySlug } from '../../../lib/markdown';
+import { getPageBySlug, getAllPages } from '../../../lib/markdown';
 import MarkdownRenderer from '../../../lib/markdown-renderer';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const pageData = await getPageBySlug('about');
+type Props = {
+  params: Promise<{ slug: string[] }>;
+};
+
+export async function generateStaticParams(): Promise<{ slug: string[] }[]> {
+  try {
+    const allPages = await getAllPages();
+
+    return allPages.map((page) => {
+      const slug = page.slug.replace(/^\//, '');
+      const segments = slug.split('/').filter(Boolean);
+      return { slug: segments };
+    });
+  } catch (error) {
+    console.error('Error generating static params for pages:', error);
+    return [];
+  }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const resolvedParams = await params;
+  const slug = resolvedParams.slug.join('/');
+
+  const pageData = await getPageBySlug(slug);
 
   if (!pageData) {
     return {
-      title: 'About - Nina Groop',
+      title: 'Page Not Found - Nina Groop',
     };
   }
 
   return {
     title: `${pageData.frontmatter.title} - Nina Groop`,
     description:
-      'Learn about Nina Groop, life coach, writer, and speaker dedicated to helping others find their power and live with joy.',
+      pageData.content.slice(0, 160) ||
+      `${pageData.frontmatter.title} - Nina Groop`,
   };
 }
 
-export default async function AboutPage() {
-  const pageData = await getPageBySlug('about');
+export default async function DynamicPage({ params }: Props) {
+  const resolvedParams = await params;
+  const slug = resolvedParams.slug.join('/');
+
+  const pageData = await getPageBySlug(slug);
 
   if (!pageData) {
     notFound();
   }
+
+  // Determine image path for this page
+  const imagePath = `/content/pages/${slug}`;
 
   return (
     <>
@@ -41,7 +70,7 @@ export default async function AboutPage() {
           <MarkdownRenderer
             content={pageData.htmlContent || ''}
             className="prose prose-lg prose-headings:font-normal prose-headings:text-text-bold prose-p:text-body-text prose-p:leading-relaxed prose-a:text-brand-orange prose-a:no-underline hover:prose-a:text-text-bold prose-a:border-b prose-a:border-dotted prose-a:border-text-light hover:prose-a:border-transparent prose-strong:text-text-bold prose-strong:font-semibold max-w-none"
-            imagePath="/content/pages/about"
+            imagePath={imagePath}
           />
         </div>
       </article>

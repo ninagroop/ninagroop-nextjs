@@ -18,7 +18,6 @@ const contentDirectory = path.join(process.cwd(), 'content');
  * Get the content directory path for a specific content type
  */
 function getContentDirectory(contentType: 'blog' | 'pages' | 'home'): string {
-  console.log(contentDirectory);
   return path.join(contentDirectory, contentType);
 }
 
