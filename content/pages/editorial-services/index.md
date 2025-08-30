@@ -27,5 +27,5 @@ say exactly what you mean, and to bring out the heart of what you’re trying to
 offer thoughtful, honest feedback and work at a pace that honors your timeline and process.
 The goal is always to help you bring clarity and impact to the page.
 
-_Interested in working together?_ [Contact Me] for rates, availability, or a free 20-minute
+_Interested in working together?_ [Contact Me](/contact) for rates, availability, or a free 20-minute
 consultation.
