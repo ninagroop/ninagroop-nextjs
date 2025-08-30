@@ -8,31 +8,29 @@ import type { BlogPostWithMetadata } from '@/types/content.types';
 
 // Component for vertical tiles grid specific to markdown parsing
 interface VerticalTilesGridProps {
-  children: React.ReactNode[];
+  content: string;
 }
 
-const VerticalTilesGrid: React.FC<VerticalTilesGridProps> = ({ children }) => {
-  const filteredChildren = React.Children.toArray(children).filter(
-    (child) => typeof child !== 'string' || child.trim() !== ''
-  );
+const VerticalTilesGrid: React.FC<VerticalTilesGridProps> = ({ content }) => {
+  // Parse individual tiles from the content
+  const tileMatches = content.match(/<a[^>]*>[\s\S]*?<\/a>/gi) || [];
 
   return (
     <div className="mb-8">
       <ol className="grid list-none gap-5 p-0 lg:grid-rows-3">
-        {filteredChildren.map((child, index) => (
+        {tileMatches.map((tileHtml, index) => (
           <li key={index} className="relative p-0">
             <article className="post-list-item">
               <div
-                className={`featured-post-wrapper relative block h-auto min-w-full overflow-hidden transition-opacity hover:opacity-70 sm:h-40 lg:h-56 ${
+                className={`featured-post-wrapper relative block h-auto min-w-full overflow-hidden pl-2 transition-opacity hover:opacity-70 sm:h-40 lg:h-56 ${
                   index === 0
                     ? 'bg-[linear-gradient(45deg,transparent,#63a9b6)]'
                     : index === 1
                       ? 'bg-[linear-gradient(45deg,transparent,#dfc9a0)]'
                       : 'bg-[linear-gradient(45deg,transparent,#c97e9a)]'
                 }`}
-              >
-                {child}
-              </div>
+                dangerouslySetInnerHTML={{ __html: tileHtml }}
+              />
             </article>
           </li>
         ))}
@@ -206,23 +204,8 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
           verticalTilesMatch.index! + verticalTilesMatch[0].length
         );
 
-        const verticalTilesContent = [
-          {
-            href: '/blog',
-            title: 'Writing & Editing',
-            image: 'rana-sawalha-W_-6PWGbYaU-unsplash.jpg',
-          },
-          {
-            href: '/blog',
-            title: 'Grant Writing',
-            image: 'unseen-studio-s9CC2SKySJM-unsplash.jpg',
-          },
-          {
-            href: '/coaching',
-            title: 'Life Coaching',
-            image: 'pine-watt-3_Xwxya43hE-unsplash.jpg',
-          },
-        ];
+        // Parse the actual content between vertical-tiles-grid tags
+        const innerContent = verticalTilesMatch[1];
 
         // Add content before vertical tiles
         if (beforeVerticalTiles.trim()) {
@@ -234,32 +217,12 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
           );
         }
 
-        // Add vertical tiles
+        // Add vertical tiles with raw content
         parts.push(
-          <VerticalTilesGrid key={`vertical-tiles-${partIndex++}`}>
-            {verticalTilesContent.map((item, index) => (
-              <Link
-                key={index}
-                href={item.href}
-                className="absolute inset-0 block h-full w-full border-none p-4 no-underline"
-              >
-                <div className="relative z-10 flex h-full max-w-full flex-col justify-center md:max-w-[50%]">
-                  <h2 className="relative z-10 mb-4 text-lg font-bold text-white">
-                    {item.title}
-                  </h2>
-                </div>
-                <div className="absolute top-0 right-0 h-full w-full overflow-hidden md:w-1/2">
-                  <Image
-                    src={`/content/home/${item.image}`}
-                    alt={item.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
-              </Link>
-            ))}
-          </VerticalTilesGrid>
+          <VerticalTilesGrid
+            key={`vertical-tiles-${partIndex++}`}
+            content={innerContent}
+          />
         );
 
         currentContent = afterVerticalTiles;

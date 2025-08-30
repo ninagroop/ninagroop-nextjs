@@ -555,6 +555,38 @@ main {
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* Image wrapper for vertical tiles grid */
+.img-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 50%;
+  overflow: hidden;
+}
+
+.img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 600px) {
+  .img-wrapper {
+    width: 100%;
+    position: relative;
+  }
+}
+
+/* Anchor tags in vertical tiles grid should fill entire area */
+.featured-post-wrapper a {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
