@@ -30,5 +30,5 @@ My approach is collaborative, detail-oriented, and respectful of your time and v
 you’re just starting to build a grants program or seeking support to strengthen your existing
 efforts, I can meet you where you are.
 
-_Ready to tell your story in a way that gets funded?_ [Contact Me] to discuss your needs or
+_Ready to tell your story in a way that gets funded?_ [Contact Me](/contact) to discuss your needs or
 schedule a free 20-minute consultation.
