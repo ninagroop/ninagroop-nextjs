@@ -67,7 +67,7 @@ footercredits:
 <h2>Editing</h2>
 <div class="img-wrapper"><img src="./rana-sawalha-W_-6PWGbYaU-unsplash.jpg" /></div>
 </a>
-<a href="/blog">
+<a href="/grant-writing">
 <h2>Grant Writing</h2>
 <div class="img-wrapper"><img src="./unseen-studio-s9CC2SKySJM-unsplash.jpg" /></div>
 </a>
@@ -75,7 +75,7 @@ footercredits:
 <h2>Life Coaching</h2>
 <div class="img-wrapper"><img src="./pine-watt-3_Xwxya43hE-unsplash.jpg" /></div>
 </a>
-<a href="/writing">
+<a href="/my-writing">
 <h2>My Writing</h2>
 <div class="img-wrapper"><img src="./rana-sawalha-W_-6PWGbYaU-unsplash.jpg" /></div>
 </a>
