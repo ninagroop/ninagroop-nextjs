@@ -12,13 +12,14 @@ continuing to shape my own. I currently work with nonprofits in their fundraisin
 development efforts — writing grants, donor appeals, and communication pieces that build
 connection and inspire action. But I’m also a poet, author, and Moth storyteller; my young self
 would be quite surprised by how her story is turning out.
-What I Write
+
+## What I Write
 - Poetry 
 - Creative Nonfiction 
 - Storytelling &amp; Performance 
 - Professional &amp; Grant Writing 
 
-Where to Read or Listen
+### Where to Read or Listen
 
 Excerpt from Creek Music [Link to purchase]
 
