@@ -63,7 +63,7 @@ footercredits:
 <br style="clear: both"/>
 
 <vertical-tiles-grid>
-<a href="/editing">
+<a href="/editorial-services">
 <h2>Editing</h2>
 <div class="img-wrapper"><img src="./rana-sawalha-W_-6PWGbYaU-unsplash.jpg" /></div>
 </a>
