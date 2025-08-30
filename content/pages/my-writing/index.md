@@ -29,4 +29,4 @@ Excerpt from Creek Music [Link to purchase]
 If you’d like to collaborate on a writing project or invite me to share a story at your event, I’d
 love to hear from you.
 
-[Contact Me]
+[Contact Me](/contact)
