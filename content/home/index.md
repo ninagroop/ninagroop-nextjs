@@ -17,9 +17,6 @@ navigation:
   - title: Checkout
     slug: /checkout
     showcartindicator: true
-  - showcartindicator: false
-    title: Speaking
-    slug: /speaking
 tagline: Welcome – The Next Chapter Begins Here.
 homequote: I’m Nina Groop — writer, editor, grant writer, and life coach — and I
   help people and organizations tell their stories. Whether you're seeking
