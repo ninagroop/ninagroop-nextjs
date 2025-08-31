@@ -82,6 +82,10 @@ footercredits:
 
 > Nina has been a tremendous help as I navigate the twists and turns of life. Her insightful and uncanny way of getting to the heart of an issue has given me a fresh perspective and new confidence in tackling my goals. ~ Sam R.
 
+>Nina’s brilliance as a writer and editor is matched by her role as a trusted thought partner. Her
+guidance and insights have been instrumental in driving the success of my business. ~ Frank
+Grossman, principal & founder, Integrated Impact Group
+
 <br />
 
 [Read More Testimonials &rarr;](/testimonials)
