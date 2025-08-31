@@ -30,10 +30,10 @@ My approach is collaborative, detail-oriented, and respectful of your time and v
 you’re just starting to build a grants program or seeking support to strengthen your existing
 efforts, I can meet you where you are.
 
->**_“Nina elevated our work with her clarity and insight. She improved our grant language, helped
+>“Nina elevated our work with her clarity and insight. She improved our grant language, helped
 us understand each funder’s priorities, and offered strategic suggestions for our applications,
 annual appeal, website, newsletter, and overall communications. She is thoughtful, patient, and
-a pleasure to work with.” — Elizabeth Harris, nonprofit executive_**
+a pleasure to work with.” — Elizabeth Harris, nonprofit executive
 
 _Ready to tell your story in a way that gets funded?_ [Contact Me](/contact) to discuss your needs or
 schedule a free 20-minute consultation.
