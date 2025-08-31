@@ -27,5 +27,15 @@ say exactly what you mean, and to bring out the heart of what you’re trying to
 offer thoughtful, honest feedback and work at a pace that honors your timeline and process.
 The goal is always to help you bring clarity and impact to the page.
 
+**_“Working with Nina on Empress Rising was an absolute gift. She encouraged me to write with
+more depth and breadth, guiding me to dig deeper and weave in personal narratives that truly
+enriched the book. Her thoughtful feedback, keen eye, and unwavering support elevated my
+writing and helped me bring my vision to life. I’m deeply grateful for her wisdom and
+encouragement throughout the process.” —Rose Wippich, author_**
+
+**_“Nina's impact on my writing was significant and subtle. She made it more crisp, more human,
+and with a powerful voice far beyond what AI could do.” — Jim Grew, executive advisor and
+consultant_**
+
 _Interested in working together?_ [Contact Me](/contact) for rates, availability, or a free 20-minute
 consultation.
