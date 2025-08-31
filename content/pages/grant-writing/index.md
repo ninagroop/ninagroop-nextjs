@@ -10,6 +10,11 @@ collaborative approach to every proposal. From general operating support to proj
 and long-term grant strategy, I’ll help you clarify your goals, align your language with funder
 priorities, and write proposals that reflect the heart of your mission.
 
+**_“Nina elevated our work with her clarity and insight. She improved our grant language, helped
+us understand each funder’s priorities, and offered strategic suggestions for our applications,
+annual appeal, website, newsletter, and overall communications. She is thoughtful, patient, and
+a pleasure to work with.” — Elizabeth Harris, nonprofit executive_**
+
 ## **What I Offer**
 - **Proposal Writing** – Persuasive proposals tailored appropriately for foundations,
 corporations, and/or government agencies
