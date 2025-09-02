@@ -9,6 +9,4 @@ In college, a professor wrote seven words on one of my papers—“You could be 
 
 Many years and four sons later, I am both an editor and a writer, but I see that neither is confined to words on a page. I love the art of writing, but more than that, I love the art of living. Every day we use our beliefs, hopes, and dreams to write the story of our lives, and with our choices we edit.
 
-I know firsthand the bravery and tough choices that such editing can require. The story of my marriage and divorce includes anger issues, alcoholism, untreated mental illness, and a protective order. But I also know that despite heartbreak and challenging circumstances, it is possible to write a new future filled with joy.
-
 These days I find joy in work, in the woods, in poetry and podcasts, and with my sons and friends. My hands wrapped around a hot cup of strong coffee delivers lots of joy too.
