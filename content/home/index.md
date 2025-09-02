@@ -25,15 +25,13 @@ homequote: I’m Nina Groop — writer, editor, grant writer, and life coach —
   message clear.
 featuredimage: typewriter_garden_bg.jpg
 footerbioimage: nina-bio.jpg
-footerbiotext: Nina is a life coach, author, editor, and speaker. If she's not
-  at her desk, you'll probably find her wandering in the woods looking for
-  birds.
+footerbiotext: Nina is a writer, editor, speaker, and life coach. She's obsessed
+  with reading and the possibility of finding owls when she's out hiking.
 sociallinks:
   - title: Substack
     url: https://substack.com/@ninagroop
     icon: substack.png
-footermeettext: Schedule a free, no-obligation introductory session to learn how
-  we can work together to turn the page and help you write your next chapter.
+footermeettext: Let's talk! Schedule a call to discuss how we can work together.
 footercredits:
   - text: "Photo credit: Juniper Studios Photography"
     linktext: "@juniperstudiosphotography "
