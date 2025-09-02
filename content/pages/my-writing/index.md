@@ -27,28 +27,28 @@ would be quite surprised by how her story is turning out.
 
 **_Genesis_**
 
-_Open the door_ <br/>
-_What stands between you and what will be_ <br/>
+_Open the door_  
+_What stands between you and what will be_  
 _is nothing more than all you do not know_
 
-_Turn the handle_ </br>
-_Did you expect the door to open from the other side —_ </br>
+_Turn the handle_  
+_Did you expect the door to open from the other side —_  
 _to be invited — again — into this tomorrow?_
 
-_No_ </br>
-_If you are standing there,_</br>
+_No_  
+_If you are standing there,_  
 _you have been invited_
 
-_Cross the threshold_</br>
-_Let your eyes adjust_</br>
-_Have you ever gasped at the sight of the rising moon_</br>
-_or the rush of the incoming tide?_</br>
+_Cross the threshold_  
+_Let your eyes adjust_  
+_Have you ever gasped at the sight of the rising moon_  
+_or the rush of the incoming tide?_
 
 _This will be like that_
 
-_Look_</br>
-_The moon is breaking your horizon_</br>
-_Your feet are sinking in the wet sand_</br>
+_Look_  
+_The moon is breaking your horizon_  
+_Your feet are sinking in the wet sand_
 
 
 If you’d like to collaborate on a writing project or invite me to share a story at your event, I’d
