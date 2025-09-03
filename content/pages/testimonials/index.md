@@ -7,7 +7,9 @@ guidance and insights have been instrumental in driving the success of my busine
 
 >Working with Nina on Empress Rising was an absolute gift. She encouraged me to write with more depth and breadth, guiding me to dig deeper and weave in personal narratives that truly enriched the book. Her thoughtful feedback, keen eye, and unwavering support elevated my writing and helped me bring my vision to life. I’m deeply grateful for her wisdom and encouragement throughout the process. ~ Rose Wippich, author.
 
->Nina's impact on my writing was significant and subtle. She made it more crisp, more human, and with a powerful voice far beyond what AI could do.” ~ Jim Grew, executive advisor and consultant.
+>I feel so fortunate to have had Nina edit my book. In addition to making corrections, she made thoughtful suggestions, and asked the questions necessary to help me expand and clarify my thoughts — rounding out my book so that it really felt complete. ~ Kirsten Bonaventura, Psy.D., author
+
+>Nina's impact on my writing was significant and subtle. She made it more crisp, more human, and with a powerful voice far beyond what AI could do. ~ Jim Grew, executive advisor and consultant.
 
 >Nina elevated our work with her clarity and insight. She improved our grant language, helped us understand each funder’s priorities, and offered strategic suggestions for our applications, annual appeal, website, newsletter, and overall communications. She is thoughtful, patient, and a pleasure to work with. ~ Elizabeth Harris, nonprofit executive.
 
