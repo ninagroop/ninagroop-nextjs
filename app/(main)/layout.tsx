@@ -19,6 +19,7 @@ export default async function MainLayout({
       title: item.title,
       slug: item.slug,
       showCartIndicator: item.showcartindicator || false,
+      subnav: item.subnav || undefined,
     })) || [];
 
   // Default to shifaaz-shamoon if no featured image is specified

@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { NavItem } from '@/types/navigation.types';
+import DropdownNavigation from './DropdownNavigation';
+import MobileDropdownNavigation from './MobileDropdownNavigation';
 
 interface HeaderProps {
   siteTitle: string;
@@ -16,15 +18,9 @@ interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
   nav: NavItem[];
-  pathname: string;
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({
-  isOpen,
-  onClose,
-  nav,
-  pathname,
-}) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, nav }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -75,26 +71,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
         </button>
 
         {/* Navigation items */}
-        <nav className="mt-16 px-4">
-          <ul className="space-y-2">
-            {nav.map((item) => (
-              <li key={item.slug}>
-                <Link
-                  href={item.slug}
-                  onClick={onClose}
-                  className={cn(
-                    'no-text block rounded-lg px-4 py-3 text-sm font-medium tracking-wider uppercase transition-colors',
-                    'text-text-bold hover:bg-border-bg',
-                    pathname === item.slug &&
-                      'text-text-bold bg-border-bg font-semibold'
-                  )}
-                >
-                  {item.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <MobileDropdownNavigation nav={nav} onClose={onClose} />
       </div>
     </>
   );
@@ -165,24 +142,9 @@ const Header: React.FC<HeaderProps> = ({ siteTitle, siteDescription, nav }) => {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:block">
-              <ul className="flex items-center space-x-1">
-                {filteredNav.map((item) => (
-                  <li key={item.slug}>
-                    <Link
-                      href={item.slug}
-                      className={cn(
-                        'no-text px-4 py-2 text-sm font-medium tracking-wider uppercase transition-colors',
-                        'hover:text-white',
-                        pathname === item.slug && 'text-text-bold font-semibold'
-                      )}
-                    >
-                      {item.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            <div className="hidden lg:block">
+              <DropdownNavigation nav={filteredNav} />
+            </div>
 
             {/* Mobile Menu Button */}
             <button
@@ -226,7 +188,6 @@ const Header: React.FC<HeaderProps> = ({ siteTitle, siteDescription, nav }) => {
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
         nav={filteredNav}
-        pathname={pathname}
       />
     </>
   );

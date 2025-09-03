@@ -1,6 +1,7 @@
+import { SubNavItem } from './navigation.types';
+
 /**
- * Content type definitions for Nina Groop website
- * These interfaces define the structure of frontmatter in markdown files
+ * Blog post frontmatter structure
  */
 
 /**
@@ -10,6 +11,7 @@ export interface NavigationItem {
   title: string;
   slug: string;
   showcartindicator?: boolean;
+  subnav?: SubNavItem[];
 }
 
 /**

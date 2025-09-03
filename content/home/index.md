@@ -4,12 +4,25 @@ title: Home
 navigation:
   - title: Home
     slug: /
+  - title: Services
+    slug: /services
+    subnav:
+      - title: Editing
+        slug: /editorial-services
+        description: Thoughtful, intuitive support to shape your story, refine your voice, and say what matters
+      - title: Grant Writing
+        slug: /grant-writing
+        description: Turning bold ideas into funded realities with clarity and heart
+      - title: Life Coaching
+        slug: /coaching
+        description: Forward-looking, compassionate guidance for life's transitions and turning points
+      - title: My Writing
+        slug: /my-writing
+        description: Poetry, essays, and true stories from a life of listening
   - title: Blog
     slug: /blog
   - title: About
     slug: /about
-  - title: Coaching
-    slug: /coaching
   - title: Contact
     slug: /contact
   - title: Store

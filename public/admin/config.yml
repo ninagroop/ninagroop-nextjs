@@ -114,6 +114,19 @@ collections:
                   required: false,
                   default: false,
                 }
+              - label: 'Sub Navigation Items'
+                name: 'subnav'
+                widget: 'list'
+                required: false
+                fields:
+                  - { label: 'Display Text', name: 'title', widget: 'string' }
+                  - { label: 'URL Path', name: 'slug', widget: 'string' }
+                  - {
+                      label: 'Description',
+                      name: 'description',
+                      widget: 'text',
+                      required: false,
+                    }
           - { label: 'Tagline', name: 'tagline', widget: 'string' }
           - { label: 'Home Quote', name: 'homequote', widget: 'text' }
           - {
