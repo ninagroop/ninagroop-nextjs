@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getPageBySlug, getAllPages } from '../../../lib/markdown';
 import MarkdownRenderer from '../../../lib/markdown-renderer';
+import { getAudioExcerptsForMarkdown } from '../../../lib/audio';
 
 type Props = {
   params: Promise<{ slug: string[] }>;
@@ -52,6 +53,9 @@ export default async function DynamicPage({ params }: Props) {
     notFound();
   }
 
+  // Get audio excerpts from markdown content
+  const audioExcerpts = await getAudioExcerptsForMarkdown(pageData.content);
+
   // Determine image path for this page
   const imagePath = `/content/pages/${slug}`;
 
@@ -71,6 +75,7 @@ export default async function DynamicPage({ params }: Props) {
             content={pageData.htmlContent || ''}
             className="prose prose-lg prose-headings:font-normal prose-headings:text-text-bold prose-p:text-body-text prose-p:leading-relaxed prose-a:text-brand-orange prose-a:no-underline hover:prose-a:text-text-bold prose-a:border-b prose-a:border-dotted prose-a:border-text-light hover:prose-a:border-transparent prose-strong:text-text-bold prose-strong:font-semibold max-w-none"
             imagePath={imagePath}
+            audioExcerpts={audioExcerpts}
           />
         </div>
       </article>

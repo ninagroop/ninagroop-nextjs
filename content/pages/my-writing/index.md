@@ -2,8 +2,8 @@
 templatekey: page
 title: My Writing
 ---
-When I was in fourth grade, my older brother, a recent college grad, gave me a copy of _The
-Lion, the Witch, and the Wardrobe_ and told me that the kids in college who could read fast did
+When I was in fourth grade, my older brother, a recent college grad, gave me a copy of *The
+Lion, the Witch, and the Wardrobe* and told me that the kids in college who could read fast did
 well. This lit a fire in me, and I began devouring books. Yet I never once dreamed of writing
 books myself; I would have said I hated writing. Years later, a brilliant college professor helped
 me see writing in a new way, and the gift he named in me redirected my path.
@@ -14,42 +14,44 @@ connection and inspire action. But I’m also a poet, author, and Moth storytell
 would be quite surprised by how her story is turning out.
 
 ## What I Write
-- Poetry 
-- Creative Nonfiction 
-- Storytelling &amp; Performance 
-- Professional &amp; Grant Writing 
+
+* Poetry 
+* Creative Nonfiction 
+* Storytelling &amp; Performance 
+* Professional &amp; Grant Writing 
 
 ### Where to Read or Listen
 
 [Creek Music: What a Year in the Woods Taught Me about Seasons, Surrender & Joy](https://www.amazon.com/Creek-Music-Taught-Seasons-Surrender/dp/B0B9QS2F2M/ref=sr_1_1?crid=3S6V4OYJQ76YW&dib=eyJ2IjoiMSJ9.zY8Sx1Wq_8aEekP2WAEj6A.bN8hbTbuV7Ntvhsgb4LnbCX5C10YxGFy06bRCWsTBxQ&dib_tag=se&keywords=nina+groop+creek+music&qid=1756576162&sprefix=nina+groop+creek+music%2Caps%2C132&sr=8-1)
 
+[<audio-player slug="creek-music-chapter-19"></audio-player>](https://www.amazon.com/Creek-Music-Taught-Seasons-Surrender/dp/B0B9QS2F2M/ref=sr_1_1?crid=3S6V4OYJQ76YW&dib=eyJ2IjoiMSJ9.zY8Sx1Wq_8aEekP2WAEj6A.bN8hbTbuV7Ntvhsgb4LnbCX5C10YxGFy06bRCWsTBxQ&dib_tag=se&keywords=nina+groop+creek+music&qid=1756576162&sprefix=nina+groop+creek+music%2Caps%2C132&sr=8-1)
+
 [Substack](https://ninagroop.substack.com/)
 
-**_Genesis_**
+***Genesis***
 
-_Open the door_  
-_What stands between you and what will be_  
-_is nothing more than all you do not know_
+*Open the door*\
+*What stands between you and what will be*\
+*is nothing more than all you do not know*
 
-_Turn the handle_  
-_Did you expect the door to open from the other side —_  
-_to be invited — again — into this tomorrow?_
+*Turn the handle*\
+*Did you expect the door to open from the other side —*\
+*to be invited — again — into this tomorrow?*
 
-_No_  
-_If you are standing there,_  
-_you have been invited_
+*No*\
+*If you are standing there,*\
+*you have been invited*
 
-_Cross the threshold_  
-_Let your eyes adjust_  
-_Have you ever gasped at the sight of the rising moon_  
-_or the rush of the incoming tide?_
+*Cross the threshold*\
+*Let your eyes adjust*\
+*Have you ever gasped at the sight of the rising moon*\
+*or the rush of the incoming tide?*
 
-_This will be like that_
+*This will be like that*
 
-_Look_  
-_The moon is breaking your horizon_  
-_Your feet are sinking in the wet sand_
-
+*Look*\
+*The moon is breaking your horizon*\
+*Your feet are sinking in the wet sand*
 
 If you’d like to collaborate on a writing project or invite me to share a story at your event, I’d
 love to hear from you.

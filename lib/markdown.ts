@@ -98,7 +98,7 @@ async function markdownToHtml(markdown: string): Promise<string> {
 
   // Extract and preserve custom tags
   const processedMarkdown = markdown.replace(
-    /<(vertical-tiles-grid|post-grid|featured-products|calendly-button)([^>]*)>([\s\S]*?)<\/\1>/gi,
+    /<(vertical-tiles-grid|post-grid|featured-products|calendly-button|audio-player)([^>]*)>([\s\S]*?)<\/\1>/gi,
     (match) => {
       const placeholder = `CUSTOM_TAG_PLACEHOLDER_${tagCounter++}`;
       customTagsMap.set(placeholder, match);

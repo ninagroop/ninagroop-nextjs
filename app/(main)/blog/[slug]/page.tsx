@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { getAudioExcerptsForMarkdown } from '@/lib/audio';
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -80,6 +81,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     imageBasePath,
   } = post;
 
+  // Get audio excerpts from markdown content
+  const audioExcerpts = await getAudioExcerptsForMarkdown(post.content);
+
   const adjacentPosts = await getAdjacentPosts(post.slug);
 
   return (
@@ -129,6 +133,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <MarkdownRenderer
             content={htmlContent || ''}
             className="prose prose-lg prose-headings:font-normal prose-headings:text-text-bold prose-p:text-body-text prose-p:leading-relaxed prose-a:text-brand-orange prose-a:no-underline hover:prose-a:text-text-bold prose-a:border-b prose-a:border-dotted prose-a:border-text-light hover:prose-a:border-transparent prose-strong:text-text-bold prose-strong:font-semibold max-w-none"
+            audioExcerpts={audioExcerpts}
           />
 
           <hr className="border-border my-12 border-0 border-b-2" />

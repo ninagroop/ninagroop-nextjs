@@ -2,6 +2,7 @@ import { getHomeContent, getAllPosts } from '@/lib/markdown';
 import MarkdownRenderer from '@/lib/markdown-renderer';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { getAudioExcerptsForMarkdown } from '@/lib/audio';
 
 export const metadata: Metadata = {
   title: 'Home - Nina Groop',
@@ -18,6 +19,9 @@ export default async function HomePage() {
   }
 
   const { frontmatter, htmlContent } = homeContent;
+
+  // Get audio excerpts from markdown content
+  const audioExcerpts = await getAudioExcerptsForMarkdown(homeContent.content);
 
   return (
     <>
@@ -46,6 +50,7 @@ export default async function HomePage() {
             className="text-body-text max-w-none"
             posts={posts}
             imagePath="/content/home"
+            audioExcerpts={audioExcerpts}
           />
         </div>
       </article>

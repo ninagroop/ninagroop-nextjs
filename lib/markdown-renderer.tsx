@@ -4,7 +4,9 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { BlogPostGrid } from '@/components/blog';
+import InlineAudioPlayer from '@/components/InlineAudioPlayer';
 import type { BlogPostWithMetadata } from '@/types/content.types';
+import type { AudioExcerpt } from '@/types/audio';
 
 // Component for vertical tiles grid specific to markdown parsing
 interface VerticalTilesGridProps {
@@ -172,6 +174,7 @@ interface MarkdownRendererProps {
   className?: string;
   imagePath?: string;
   posts?: BlogPostWithMetadata[];
+  audioExcerpts?: { [slug: string]: AudioExcerpt };
 }
 
 export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
@@ -179,6 +182,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   className = '',
   imagePath = '',
   posts = [],
+  audioExcerpts = {},
 }) => {
   // Process the content to handle custom components
   // Enhanced markdown renderer with custom components
@@ -269,6 +273,53 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
         );
 
         currentContent = afterPostGrid;
+      }
+
+      // Handle audio-player
+      const audioPlayerMatch = currentContent.match(
+        /<audio-player([^>]*?)><\/audio-player>/i
+      );
+      if (audioPlayerMatch) {
+        const beforeAudioPlayer = currentContent.substring(
+          0,
+          audioPlayerMatch.index
+        );
+        const afterAudioPlayer = currentContent.substring(
+          audioPlayerMatch.index! + audioPlayerMatch[0].length
+        );
+
+        const attributes = audioPlayerMatch[1];
+        const slugMatch = attributes.match(/slug="([^"]*?)"/);
+        const titleMatch = attributes.match(/title="([^"]*?)"/);
+
+        const slug = slugMatch ? slugMatch[1] : undefined;
+        const excerpt = slug ? audioExcerpts[slug] || null : null;
+
+        const audioPlayerProps = {
+          excerpt,
+          slug,
+          title: titleMatch ? titleMatch[1] : undefined,
+        };
+
+        // Add content before audio player
+        if (beforeAudioPlayer.trim()) {
+          parts.push(
+            <div
+              key={`before-audio-${partIndex++}`}
+              dangerouslySetInnerHTML={{ __html: beforeAudioPlayer }}
+            />
+          );
+        }
+
+        // Add audio player
+        parts.push(
+          <InlineAudioPlayer
+            key={`audio-player-${partIndex++}`}
+            {...audioPlayerProps}
+          />
+        );
+
+        currentContent = afterAudioPlayer;
       }
 
       // Add any remaining content

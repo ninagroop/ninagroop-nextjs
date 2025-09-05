@@ -1,0 +1,123 @@
+/* CSS Module for Audio Player */
+.audioPlayer {
+  box-shadow: none !important;
+  border-radius: 0.5rem;
+  border: 1px solid hsl(var(--border));
+  background: hsl(var(--background)) !important;
+  font-family: inherit;
+}
+
+.audioPlayer :global(.rhap_container) {
+  background: transparent !important;
+}
+
+.audioPlayer :global(.rhap_main-controls) {
+  justify-content: flex-start;
+}
+
+.audioPlayer :global(.rhap_play-pause-button) {
+  color: hsl(var(--primary)) !important;
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.audioPlayer :global(.rhap_play-pause-button:hover) {
+  color: hsl(var(--primary)) !important;
+  opacity: 0.8;
+}
+
+.audioPlayer :global(.rhap_rewind-button),
+.audioPlayer :global(.rhap_forward-button) {
+  color: hsl(var(--muted-foreground)) !important;
+  width: 32px !important;
+  height: 32px !important;
+}
+
+.audioPlayer :global(.rhap_progress-container) {
+  background: hsl(var(--muted)) !important;
+  height: 4px;
+  border-radius: 2px;
+  margin: 0 12px;
+}
+
+.audioPlayer :global(.rhap_progress-bar),
+.audioPlayer :global(.rhap_progress-filled) {
+  background: hsl(var(--primary)) !important;
+}
+
+.audioPlayer :global(.rhap_progress-indicator) {
+  background: hsl(var(--primary)) !important;
+  border: 2px solid hsl(var(--background)) !important;
+  width: 14px !important;
+  height: 14px !important;
+  top: -5px !important;
+}
+
+.audioPlayer :global(.rhap_time) {
+  color: hsl(var(--muted-foreground)) !important;
+  font-size: 0.875rem;
+}
+
+.audioPlayer :global(.rhap_download-progress) {
+  background: hsl(var(--muted)) !important;
+  height: 4px;
+  border-radius: 2px;
+}
+
+.audioPlayer :global(.rhap_download-filled) {
+  background: hsl(var(--muted-foreground)) !important;
+  opacity: 0.3;
+}
+
+.audioPlayer :global(.rhap_volume-container) {
+  margin-left: auto;
+}
+
+.audioPlayer :global(.rhap_volume-button) {
+  color: hsl(var(--muted-foreground)) !important;
+  width: 32px !important;
+  height: 32px !important;
+}
+
+.audioPlayer :global(.rhap_volume-bar) {
+  background: hsl(var(--muted)) !important;
+  height: 4px;
+  border-radius: 2px;
+}
+
+.audioPlayer :global(.rhap_volume-filled) {
+  background: hsl(var(--primary)) !important;
+}
+
+.audioPlayer :global(.rhap_volume-indicator) {
+  background: hsl(var(--primary)) !important;
+  border: 2px solid hsl(var(--background)) !important;
+  width: 14px !important;
+  height: 14px !important;
+  top: -5px !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .audioPlayer :global(.rhap_time) {
+    font-size: 0.75rem;
+  }
+
+  .audioPlayer :global(.rhap_progress-indicator),
+  .audioPlayer :global(.rhap_volume-indicator) {
+    width: 12px !important;
+    height: 12px !important;
+  }
+
+  .audioPlayer :global(.rhap_play-pause-button) {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .audioPlayer :global(.rhap_rewind-button),
+  .audioPlayer :global(.rhap_forward-button),
+  .audioPlayer :global(.rhap_volume-button) {
+    width: 28px !important;
+    height: 28px !important;
+  }
+}
