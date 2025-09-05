@@ -64,7 +64,7 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.calendly.com",
               "font-src 'self' https://fonts.gstatic.com https://assets.calendly.com",
               "img-src 'self' data: https: http:",
-              "connect-src 'self' https://api.calendly.com https://calendly.com https://ninagroop.substack.com",
+              "connect-src 'self' https://api.calendly.com https://calendly.com https://ninagroop.substack.com https://api.iconify.design",
               "frame-src 'self' https://calendly.com https://ninagroop.substack.com",
               "media-src 'self'",
               "object-src 'none'",

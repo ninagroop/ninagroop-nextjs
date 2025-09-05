@@ -2,8 +2,8 @@
 .audioPlayer {
   box-shadow: none !important;
   border-radius: 0.5rem;
-  border: 1px solid hsl(var(--border));
-  background: hsl(var(--background)) !important;
+  border: 1px solid var(--border-custom, rgba(0, 0, 0, 0.125));
+  background: var(--custom-background, #ffffff) !important;
   font-family: inherit;
 }
 
@@ -16,25 +16,53 @@
 }
 
 .audioPlayer :global(.rhap_play-pause-button) {
-  color: hsl(var(--primary)) !important;
+  color: var(--brand-primary, #d96528) !important;
   width: 40px !important;
   height: 40px !important;
 }
 
 .audioPlayer :global(.rhap_play-pause-button:hover) {
-  color: hsl(var(--primary)) !important;
-  opacity: 0.8;
+  color: var(--link-color, #ce812a) !important;
+  opacity: 0.9;
 }
 
 .audioPlayer :global(.rhap_rewind-button),
 .audioPlayer :global(.rhap_forward-button) {
-  color: hsl(var(--muted-foreground)) !important;
+  color: var(--body-text, rgb(58, 56, 52)) !important;
   width: 32px !important;
   height: 32px !important;
 }
 
+.audioPlayer :global(.rhap_rewind-button:hover),
+.audioPlayer :global(.rhap_forward-button:hover) {
+  color: var(--foreground-bold, #313131) !important;
+}
+
+/* SVG icon visibility */
+.audioPlayer :global(.rhap_play-pause-button svg) {
+  fill: var(--brand-primary, #d96528) !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.audioPlayer :global(.rhap_play-pause-button:hover svg) {
+  fill: var(--link-color, #ce812a) !important;
+}
+
+.audioPlayer :global(.rhap_rewind-button svg),
+.audioPlayer :global(.rhap_forward-button svg) {
+  fill: var(--body-text, rgb(58, 56, 52)) !important;
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.audioPlayer :global(.rhap_rewind-button:hover svg),
+.audioPlayer :global(.rhap_forward-button:hover svg) {
+  fill: var(--foreground-bold, #313131) !important;
+}
+
 .audioPlayer :global(.rhap_progress-container) {
-  background: hsl(var(--muted)) !important;
+  background: var(--border-bg, rgba(0, 0, 0, 0.075)) !important;
   height: 4px;
   border-radius: 2px;
   margin: 0 12px;
@@ -42,31 +70,31 @@
 
 .audioPlayer :global(.rhap_progress-bar),
 .audioPlayer :global(.rhap_progress-filled) {
-  background: hsl(var(--primary)) !important;
+  background: var(--brand-primary, #d96528) !important;
 }
 
 .audioPlayer :global(.rhap_progress-indicator) {
-  background: hsl(var(--primary)) !important;
-  border: 2px solid hsl(var(--background)) !important;
+  background: var(--brand-primary, #d96528) !important;
+  border: 2px solid var(--custom-background, #ffffff) !important;
   width: 14px !important;
   height: 14px !important;
   top: -5px !important;
 }
 
 .audioPlayer :global(.rhap_time) {
-  color: hsl(var(--muted-foreground)) !important;
+  color: var(--body-text, rgb(58, 56, 52)) !important;
   font-size: 0.875rem;
 }
 
 .audioPlayer :global(.rhap_download-progress) {
-  background: hsl(var(--muted)) !important;
+  background: var(--border-bg, rgba(0, 0, 0, 0.075)) !important;
   height: 4px;
   border-radius: 2px;
 }
 
 .audioPlayer :global(.rhap_download-filled) {
-  background: hsl(var(--muted-foreground)) !important;
-  opacity: 0.3;
+  background: var(--foreground-light, rgba(0, 0, 0, 0.35)) !important;
+  opacity: 0.5;
 }
 
 .audioPlayer :global(.rhap_volume-container) {
@@ -74,27 +102,70 @@
 }
 
 .audioPlayer :global(.rhap_volume-button) {
-  color: hsl(var(--muted-foreground)) !important;
+  color: var(--body-text, rgb(58, 56, 52)) !important;
   width: 32px !important;
   height: 32px !important;
 }
 
+.audioPlayer :global(.rhap_volume-button:hover) {
+  color: var(--foreground-bold, #313131) !important;
+}
+
+.audioPlayer :global(.rhap_volume-button svg) {
+  fill: var(--body-text, rgb(58, 56, 52)) !important;
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.audioPlayer :global(.rhap_volume-button:hover svg) {
+  fill: var(--foreground-bold, #313131) !important;
+}
+
 .audioPlayer :global(.rhap_volume-bar) {
-  background: hsl(var(--muted)) !important;
+  background: var(--border-bg, rgba(0, 0, 0, 0.075)) !important;
   height: 4px;
   border-radius: 2px;
 }
 
 .audioPlayer :global(.rhap_volume-filled) {
-  background: hsl(var(--primary)) !important;
+  background: var(--brand-primary, #d96528) !important;
 }
 
 .audioPlayer :global(.rhap_volume-indicator) {
-  background: hsl(var(--primary)) !important;
-  border: 2px solid hsl(var(--background)) !important;
+  background: var(--brand-primary, #d96528) !important;
+  border: 2px solid var(--custom-background, #ffffff) !important;
   width: 14px !important;
   height: 14px !important;
   top: -5px !important;
+}
+
+/* Additional button states for better visibility */
+.audioPlayer :global(.rhap_button-clear) {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.audioPlayer :global(.rhap_button-clear:hover) {
+  background: var(--border-bg, rgba(0, 0, 0, 0.075)) !important;
+  border-radius: 4px;
+}
+
+/* Ensure all icons are visible */
+.audioPlayer :global(.rhap_progress-section) {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.audioPlayer :global(.rhap_controls-section) {
+  display: flex;
+  align-items: center;
+}
+
+.audioPlayer :global(.rhap_additional-controls) {
+  display: flex;
+  align-items: center;
 }
 
 /* Responsive adjustments */
@@ -120,4 +191,93 @@
     width: 28px !important;
     height: 28px !important;
   }
+}
+
+/* Force visibility for any hidden elements */
+.audioPlayer :global(.rhap_main-controls-button),
+.audioPlayer :global(.rhap_volume-controls) {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Force all SVG icons to be visible */
+.audioPlayer :global(svg) {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: inline-block !important;
+}
+
+/* Fallback for any missed SVG elements */
+.audioPlayer :global(button svg),
+.audioPlayer :global([role='button'] svg) {
+  fill: var(--body-text, rgb(58, 56, 52)) !important;
+}
+
+/* Comprehensive button visibility fixes */
+.audioPlayer :global(.rhap_play-pause-button) {
+  background: rgba(249, 249, 249, 0.8) !important;
+  border-radius: 50% !important;
+  border: 1px solid var(--border-custom, rgba(0, 0, 0, 0.125)) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.audioPlayer :global(.rhap_rewind-button),
+.audioPlayer :global(.rhap_forward-button) {
+  background: rgba(249, 249, 249, 0.6) !important;
+  border-radius: 4px !important;
+  border: 1px solid var(--border-custom, rgba(0, 0, 0, 0.125)) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.audioPlayer :global(.rhap_volume-button) {
+  background: rgba(249, 249, 249, 0.6) !important;
+  border-radius: 4px !important;
+  border: 1px solid var(--border-custom, rgba(0, 0, 0, 0.125)) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Force all button content to be visible */
+.audioPlayer :global(.rhap_play-pause-button *),
+.audioPlayer :global(.rhap_rewind-button *),
+.audioPlayer :global(.rhap_forward-button *),
+.audioPlayer :global(.rhap_volume-button *) {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+/* Alternative icon targeting for different react-h5-audio-player versions */
+.audioPlayer :global(.rhap_play-pause-button path),
+.audioPlayer :global(.rhap_rewind-button path),
+.audioPlayer :global(.rhap_forward-button path),
+.audioPlayer :global(.rhap_volume-button path) {
+  fill: var(--body-text, rgb(58, 56, 52)) !important;
+  stroke: var(--body-text, rgb(58, 56, 52)) !important;
+}
+
+.audioPlayer :global(.rhap_play-pause-button path) {
+  fill: var(--brand-primary, #d96528) !important;
+  stroke: var(--brand-primary, #d96528) !important;
+}
+
+/* Debug styles - remove these once working */
+.audioPlayer :global(button) {
+  min-width: 32px !important;
+  min-height: 32px !important;
+  position: relative !important;
+}
+
+/* Removed fallback content to check if real SVG icons are visible */
+
+/* Clean styles for custom SVG icons */
+.audioPlayer :global(button svg) {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
 }

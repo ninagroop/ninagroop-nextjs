@@ -1,6 +1,6 @@
 'use client';
 
-import AudioPlayerComponent from './AudioPlayer';
+import DynamicAudioPlayer from './DynamicAudioPlayer';
 import { AudioExcerpt, AudioPlayerConfig } from '@/types/audio';
 import { cn } from '@/lib/utils';
 
@@ -17,7 +17,7 @@ export default function AudioPlayerList({
 }: AudioPlayerListProps) {
   if (!excerpts.length) {
     return (
-      <div className="rounded-lg border border-muted p-6 text-center">
+      <div className="border-muted rounded-lg border p-6 text-center">
         <p className="text-muted-foreground">No audio excerpts available</p>
       </div>
     );
@@ -27,7 +27,7 @@ export default function AudioPlayerList({
     <div className={cn('space-y-6', className)}>
       {excerpts.map((excerpt) => (
         <div key={excerpt.slug} className="rounded-lg border p-4">
-          <AudioPlayerComponent excerpt={excerpt} autoPlay={false} />
+          <DynamicAudioPlayer excerpt={excerpt} autoPlay={false} />
         </div>
       ))}
     </div>

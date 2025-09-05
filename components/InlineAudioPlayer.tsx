@@ -1,6 +1,6 @@
 'use client';
 
-import AudioPlayerComponent from './AudioPlayer';
+import DynamicAudioPlayer from './DynamicAudioPlayer';
 import { AudioExcerpt } from '@/types/audio';
 
 interface InlineAudioPlayerProps {
@@ -40,7 +40,7 @@ export default function InlineAudioPlayer({
         {title && (
           <h3 className="mb-4 text-lg font-semibold text-gray-900">{title}</h3>
         )}
-        <AudioPlayerComponent excerpt={excerpt} />
+        <DynamicAudioPlayer excerpt={excerpt} />
       </div>
     </div>
   );

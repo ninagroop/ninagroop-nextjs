@@ -28,8 +28,8 @@ export default function AudioPlayerComponent({
 
   if (!excerpt?.audiofile) {
     return (
-      <div className="flex items-center justify-center rounded-lg border border-destructive/20 bg-destructive/5 p-4">
-        <p className="text-sm text-muted-foreground">Audio file not found</p>
+      <div className="border-destructive/20 bg-destructive/5 flex items-center justify-center rounded-lg border p-4">
+        <p className="text-muted-foreground text-sm">Audio file not found</p>
       </div>
     );
   }
@@ -40,7 +40,7 @@ export default function AudioPlayerComponent({
       <div className="space-y-1">
         <h3 className="font-semibold">{excerpt.title}</h3>
         {excerpt.description && (
-          <p className="text-sm text-muted-foreground">{excerpt.description}</p>
+          <p className="text-muted-foreground text-sm">{excerpt.description}</p>
         )}
       </div>
 

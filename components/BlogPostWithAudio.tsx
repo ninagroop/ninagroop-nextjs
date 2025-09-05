@@ -1,5 +1,5 @@
 import { getAudioExcerptBySlug } from '@/lib/audio';
-import AudioPlayerComponent from './AudioPlayer';
+import DynamicAudioPlayer from './DynamicAudioPlayer';
 import { BlogPostWithAudio } from '@/types/audio';
 
 interface BlogPostWithAudioProps {
@@ -16,7 +16,7 @@ interface BlogPostWithAudioProps {
 
 export default async function BlogPostWithAudioComponent({
   post,
-  className
+  className,
 }: BlogPostWithAudioProps) {
   // Get audio excerpt if post has one configured
   const audioExcerpt = post.audioexcerpt
@@ -29,18 +29,18 @@ export default async function BlogPostWithAudioComponent({
       <header className="mb-8 space-y-4">
         <h1 className="text-3xl font-bold tracking-tight">{post.title}</h1>
 
-        <div className="flex items-center space-x-4 text-sm text-muted-foreground">
+        <div className="text-muted-foreground flex items-center space-x-4 text-sm">
           <time dateTime={post.date}>
             {new Date(post.date).toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'long',
-              day: 'numeric'
+              day: 'numeric',
             })}
           </time>
         </div>
 
         {post.description && (
-          <p className="text-lg text-muted-foreground">{post.description}</p>
+          <p className="text-muted-foreground text-lg">{post.description}</p>
         )}
       </header>
 
@@ -60,7 +60,7 @@ export default async function BlogPostWithAudioComponent({
         <section className="mb-8">
           <h2 className="mb-4 text-xl font-semibold">Listen to this excerpt</h2>
           <div className="rounded-lg border p-4">
-            <AudioPlayerComponent excerpt={audioExcerpt} />
+            <DynamicAudioPlayer excerpt={audioExcerpt} />
           </div>
         </section>
       )}
