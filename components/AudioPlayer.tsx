@@ -3,7 +3,6 @@
 import { useRef } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
-import styles from './AudioPlayer.module.css';
 import { AudioExcerpt } from '@/types/audio';
 import { cn } from '@/lib/utils';
 
@@ -44,7 +43,6 @@ export default function AudioPlayerComponent({
         )}
       </div>
 
-      {/* Audio Player */}
       <AudioPlayer
         ref={playerRef}
         src={excerpt.audiofile}
@@ -57,8 +55,7 @@ export default function AudioPlayerComponent({
         onEnded={onEnded}
         customAdditionalControls={[]}
         customVolumeControls={[]}
-        layout="horizontal-reverse"
-        className={styles.audioPlayer}
+        layout="stacked"
       />
     </div>
   );

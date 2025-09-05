@@ -14,11 +14,10 @@ export default function InlineAudioPlayer({
   excerpt,
   title,
   slug,
-  className = '',
 }: InlineAudioPlayerProps) {
   if (!excerpt) {
     return (
-      <div className={`my-6 ${className}`}>
+      <div className={`my-6 w-full md:w-2/3 xl:w-1/2`}>
         <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-center">
           <div className="mb-2 text-sm font-medium text-red-800">
             Audio Player Error
@@ -35,7 +34,7 @@ export default function InlineAudioPlayer({
   }
 
   return (
-    <div className={`my-6 ${className}`}>
+    <div className={`my-6 w-full md:w-2/3 xl:w-1/2`}>
       <div className="rounded-lg border border-gray-200 bg-white/80 p-4 shadow-sm">
         {title && (
           <h3 className="mb-4 text-lg font-semibold text-gray-900">{title}</h3>
