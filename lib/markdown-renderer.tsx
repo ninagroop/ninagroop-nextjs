@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
+
 import { BlogPostGrid } from '@/components/blog';
 import InlineAudioPlayer from '@/components/InlineAudioPlayer';
 import type { BlogPostWithMetadata } from '@/types/content.types';
@@ -348,7 +347,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
         dangerouslySetInnerHTML={{ __html: processed }}
       />
     );
-  }, [content, className, imagePath, posts]);
+  }, [content, className, imagePath, posts, audioExcerpts]);
 
   return <>{processedContent}</>;
 };

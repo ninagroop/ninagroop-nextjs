@@ -6,18 +6,20 @@ interface PageWithAudioProps {
   page: PageWithAudio & {
     title: string;
     body?: string;
-    [key: string]: any;
+    [key: string]: unknown;
   };
   className?: string;
 }
 
 export default async function PageWithAudioComponent({
   page,
-  className
+  className,
 }: PageWithAudioProps) {
   // Get audio excerpts if page has audio players configured
   const excerpts = page.audioplayers?.length
-    ? await getAudioExcerptsForPage(page.audioplayers.map(config => config.excerpt))
+    ? await getAudioExcerptsForPage(
+        page.audioplayers.map((config) => config.excerpt)
+      )
     : [];
 
   return (

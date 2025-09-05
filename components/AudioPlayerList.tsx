@@ -1,18 +1,16 @@
 'use client';
 
 import DynamicAudioPlayer from './DynamicAudioPlayer';
-import { AudioExcerpt, AudioPlayerConfig } from '@/types/audio';
+import { AudioExcerpt } from '@/types/audio';
 import { cn } from '@/lib/utils';
 
 interface AudioPlayerListProps {
   excerpts: AudioExcerpt[];
-  playerConfigs?: AudioPlayerConfig[];
   className?: string;
 }
 
 export default function AudioPlayerList({
   excerpts,
-  playerConfigs = [],
   className,
 }: AudioPlayerListProps) {
   if (!excerpts.length) {

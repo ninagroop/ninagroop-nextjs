@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import BlogCard from '../BlogCard';
 import {
@@ -126,9 +127,11 @@ export const VerticalTilesGrid: React.FC<VerticalTilesGridProps> = ({
                     {/* Image positioned on right side on larger screens */}
                     {childProps.featuredimage && (
                       <div className="absolute top-0 right-0 h-full w-full overflow-hidden md:w-1/2">
-                        <img
+                        <Image
                           src={childProps.featuredimage}
                           alt={childProps.title || ''}
+                          width={400}
+                          height={300}
                           className="h-full w-full object-cover"
                         />
                       </div>

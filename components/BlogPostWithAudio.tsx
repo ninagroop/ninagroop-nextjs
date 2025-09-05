@@ -1,6 +1,7 @@
 import { getAudioExcerptBySlug } from '@/lib/audio';
 import DynamicAudioPlayer from './DynamicAudioPlayer';
 import { BlogPostWithAudio } from '@/types/audio';
+import Image from 'next/image';
 
 interface BlogPostWithAudioProps {
   post: BlogPostWithAudio & {
@@ -9,7 +10,7 @@ interface BlogPostWithAudioProps {
     description?: string;
     body: string;
     featuredimage?: string;
-    [key: string]: any;
+    [key: string]: unknown;
   };
   className?: string;
 }
@@ -47,9 +48,11 @@ export default async function BlogPostWithAudioComponent({
       {/* Featured Image */}
       {post.featuredimage && (
         <div className="mb-8">
-          <img
+          <Image
             src={post.featuredimage}
             alt={post.title}
+            width={800}
+            height={400}
             className="w-full rounded-lg object-cover"
           />
         </div>
