@@ -1,1 +1,0 @@
-export { CheckoutSuccess } from './CheckoutSuccess';
