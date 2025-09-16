@@ -14,10 +14,7 @@ export async function createCheckoutSession(lineItems: CheckoutLineItem[]) {
       throw new Error('No items in cart');
     }
 
-    const baseUrl =
-      process.env.NEXT_PUBLIC_BASE_URL || process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : 'http://localhost:3000';
+    const baseUrl = process.env.URL || 'http://localhost:3000';
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',

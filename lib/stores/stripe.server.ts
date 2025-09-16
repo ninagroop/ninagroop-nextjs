@@ -1,3 +1,5 @@
+'use server';
+
 import Stripe from 'stripe';
 import type { StripeProduct } from './stripe.types';
 
