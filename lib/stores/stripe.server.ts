@@ -7,23 +7,71 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2025-07-30.basil',
 });
 
-export async function getStripeProducts(): Promise<StripeProduct[]> {
+async function getStripeProducts() {
+  const allProducts = [];
+  let hasMore = true;
+  let startingAfter = null;
+
   try {
-    const [products, prices] = await Promise.all([
-      stripe.products.list({
+    while (hasMore) {
+      const response: any = await stripe.products.list({
         active: true,
         expand: ['data.default_price'],
-      }),
-      stripe.prices.list({
+        limit: 100,
+        ...(startingAfter ? { starting_after: startingAfter } : undefined),
+      });
+
+      allProducts.push(...response.data);
+      hasMore = response.has_more;
+      startingAfter = response.data[response.data.length - 1].id;
+    }
+
+    return allProducts;
+  } catch (error) {
+    console.error('Error fetching Stripe products:', error);
+    throw error;
+  }
+}
+
+async function getStripePrices() {
+  const allPrices = [];
+  let hasMore = true;
+  let startingAfter = null;
+
+  try {
+    while (hasMore) {
+      const response: any = await stripe.prices.list({
         active: true,
         expand: ['data.product'],
-      }),
+        limit: 100,
+        ...(startingAfter ? { starting_after: startingAfter } : undefined),
+      });
+
+      allPrices.push(...response.data);
+      hasMore = response.has_more;
+      startingAfter = response.data[response.data.length - 1].id;
+    }
+
+    return allPrices;
+  } catch (error) {
+    console.error('Error fetching Stripe prices:', error);
+    throw error;
+  }
+}
+
+export async function getProducts(): Promise<StripeProduct[]> {
+  try {
+    const [products, prices] = await Promise.all([
+      getStripeProducts(),
+      getStripePrices(),
     ]);
+
+    console.log(JSON.stringify(products, null, 2));
 
     const productMap: Record<string, StripeProduct> = {};
 
     // Initialize products
-    products.data.forEach((product) => {
+    products.forEach((product) => {
       productMap[product.id] = {
         id: product.id,
         name: product.name,
@@ -35,9 +83,8 @@ export async function getStripeProducts(): Promise<StripeProduct[]> {
     });
 
     // Group prices by product (only non-recurring prices)
-    prices.data.forEach((price) => {
-      // Skip recurring prices since we don't support subscriptions
-      if (price.recurring) return;
+    prices.forEach((price) => {
+      // if (price.recurring) return;
 
       const productId =
         typeof price.product === 'string' ? price.product : price.product.id;
@@ -52,6 +99,7 @@ export async function getStripeProducts(): Promise<StripeProduct[]> {
       }
     });
 
+    // console.log(productMap);
     // Filter out products without prices and sort by unit_amount
     return Object.values(productMap)
       .filter((product) => product.prices.length > 0)

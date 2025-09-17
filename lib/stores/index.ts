@@ -8,7 +8,7 @@ export type {
 
 // Server functions
 export {
-  getStripeProducts,
+  getProducts,
   getStripeProduct,
   getFeaturedProducts,
 } from './stripe.server';
