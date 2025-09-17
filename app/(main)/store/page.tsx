@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getStripeProducts } from '@/lib/stores';
+import { getProducts } from '@/lib/stores';
 import { StoreGrid } from '@/components/Store/StoreGrid';
 
 export const metadata: Metadata = {
@@ -8,11 +8,11 @@ export const metadata: Metadata = {
 };
 
 export default async function StorePage() {
-  const products = await getStripeProducts();
-
+  const products = await getProducts();
+  // console.log(products);
   return (
     <main className="container mx-auto px-4 py-8">
-      <h1 className="main-heading text-4xl font-bold mb-8">Store</h1>
+      <h1 className="main-heading mb-8 text-4xl font-bold">Store</h1>
       <div className="article-body">
         <StoreGrid products={products} />
       </div>
