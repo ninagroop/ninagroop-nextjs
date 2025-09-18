@@ -26,7 +26,9 @@ async function getStripeProducts() {
       startingAfter = response.data[response.data.length - 1].id;
     }
 
-    return allProducts;
+    return allProducts.filter(
+      (product) => product.active && product.description
+    );
   } catch (error) {
     console.error('Error fetching Stripe products:', error);
     throw error;
@@ -66,8 +68,6 @@ export async function getProducts(): Promise<StripeProduct[]> {
       getStripePrices(),
     ]);
 
-    console.log(JSON.stringify(products, null, 2));
-
     const productMap: Record<string, StripeProduct> = {};
 
     // Initialize products
@@ -84,8 +84,6 @@ export async function getProducts(): Promise<StripeProduct[]> {
 
     // Group prices by product (only non-recurring prices)
     prices.forEach((price) => {
-      // if (price.recurring) return;
-
       const productId =
         typeof price.product === 'string' ? price.product : price.product.id;
       if (productMap[productId]) {
@@ -99,7 +97,6 @@ export async function getProducts(): Promise<StripeProduct[]> {
       }
     });
 
-    // console.log(productMap);
     // Filter out products without prices and sort by unit_amount
     return Object.values(productMap)
       .filter((product) => product.prices.length > 0)
@@ -125,24 +122,13 @@ export async function getStripeProduct(
       }),
     ]);
 
-    if (!product.active) {
-      return null;
-    }
-
-    // Filter out recurring prices
-    const nonRecurringPrices = prices.data.filter((price) => !price.recurring);
-
-    if (nonRecurringPrices.length === 0) {
-      return null;
-    }
-
     return {
       id: product.id,
       name: product.name,
       description: product.description || '',
       images: product.images,
       metadata: product.metadata as StripeProduct['metadata'],
-      prices: nonRecurringPrices
+      prices: prices.data
         .map((price) => ({
           id: price.id,
           active: price.active,
@@ -159,6 +145,6 @@ export async function getStripeProduct(
 }
 
 export async function getFeaturedProducts(): Promise<StripeProduct[]> {
-  const products = await getStripeProducts();
+  const products = await getProducts();
   return products.filter((product) => product.metadata.featured === 'true');
 }

@@ -13,8 +13,8 @@ export default async function StorePage() {
   return (
     <main className="container mx-auto px-4 py-8">
       <h1 className="main-heading mb-8 text-4xl font-bold">Store</h1>
-      <div className="article-body">
-        <StoreGrid products={products} />
+      <div className="md: bg-white sm:p-[4vw]">
+        <StoreGrid products={products} className="w-full" />
       </div>
     </main>
   );
