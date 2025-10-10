@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Footer, { getFooterData } from '@/components/Footer';
-import BackgroundImage from '@/components/BackgroundImage';
 import { siteMetadata } from '@/lib/navigation';
 import { getHomeContent } from '@/lib/markdown';
 

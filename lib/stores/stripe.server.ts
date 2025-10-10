@@ -14,12 +14,13 @@ async function getStripeProducts() {
 
   try {
     while (hasMore) {
-      const response: any = await stripe.products.list({
-        active: true,
-        expand: ['data.default_price'],
-        limit: 100,
-        ...(startingAfter ? { starting_after: startingAfter } : undefined),
-      });
+      const response: Stripe.ApiList<Stripe.Product> =
+        await stripe.products.list({
+          active: true,
+          expand: ['data.default_price'],
+          limit: 100,
+          ...(startingAfter ? { starting_after: startingAfter } : undefined),
+        });
 
       allProducts.push(...response.data);
       hasMore = response.has_more;
@@ -42,7 +43,7 @@ async function getStripePrices() {
 
   try {
     while (hasMore) {
-      const response: any = await stripe.prices.list({
+      const response: Stripe.ApiList<Stripe.Price> = await stripe.prices.list({
         active: true,
         expand: ['data.product'],
         limit: 100,

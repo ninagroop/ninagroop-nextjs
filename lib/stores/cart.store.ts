@@ -1,10 +1,14 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { StripeProduct, StripePrice, CartItem, CheckoutLineItem } from './stripe.types';
+import type { StripeProduct, CartItem, CheckoutLineItem } from './stripe.types';
 
 interface CartStore {
   cart: CartItem[];
-  addToCart: (product: StripeProduct, priceId: string, quantity: number) => void;
+  addToCart: (
+    product: StripeProduct,
+    priceId: string,
+    quantity: number
+  ) => void;
   removeFromCart: (id: string) => void;
   updateQuantity: (priceId: string, quantity: number) => void;
   clearCart: () => void;
@@ -20,12 +24,16 @@ export const useCartStore = create<CartStore>()(
 
       addToCart: (product, priceId, quantity) => {
         const { cart } = get();
-        const existingItemIndex = cart.findIndex((item) => item.id === product.id);
+        const existingItemIndex = cart.findIndex(
+          (item) => item.id === product.id
+        );
 
         if (existingItemIndex >= 0) {
           // Product exists, update or add price variant
           const existingItem = cart[existingItemIndex];
-          const existingPriceIndex = existingItem.prices.findIndex((p) => p.id === priceId);
+          const existingPriceIndex = existingItem.prices.findIndex(
+            (p) => p.id === priceId
+          );
 
           if (existingPriceIndex >= 0) {
             // Price variant exists, update quantity
@@ -43,10 +51,12 @@ export const useCartStore = create<CartStore>()(
           // Product doesn't exist, add new item
           const newItem: CartItem = {
             ...product,
-            prices: product.prices.map((price) => ({
-              ...price,
-              quantity: price.id === priceId ? quantity : 0,
-            })).filter(p => p.quantity > 0),
+            prices: product.prices
+              .map((price) => ({
+                ...price,
+                quantity: price.id === priceId ? quantity : 0,
+              }))
+              .filter((p) => p.quantity > 0),
           };
           set({ cart: [...cart, newItem] });
         }
@@ -60,12 +70,16 @@ export const useCartStore = create<CartStore>()(
           set({ cart: cart.filter((item) => item.id !== id) });
         } else {
           // Remove specific price variant
-          const updatedCart = cart.map((item) => ({
-            ...item,
-            prices: item.prices.map((price) =>
-              price.id === id ? { ...price, quantity: 0 } : price
-            ).filter((price) => price.quantity > 0),
-          })).filter((item) => item.prices.length > 0);
+          const updatedCart = cart
+            .map((item) => ({
+              ...item,
+              prices: item.prices
+                .map((price) =>
+                  price.id === id ? { ...price, quantity: 0 } : price
+                )
+                .filter((price) => price.quantity > 0),
+            }))
+            .filter((item) => item.prices.length > 0);
 
           set({ cart: updatedCart });
         }
@@ -79,12 +93,14 @@ export const useCartStore = create<CartStore>()(
           return;
         }
 
-        const updatedCart = cart.map((item) => ({
-          ...item,
-          prices: item.prices.map((price) =>
-            price.id === priceId ? { ...price, quantity } : price
-          ),
-        })).filter((item) => item.prices.some(p => p.quantity > 0));
+        const updatedCart = cart
+          .map((item) => ({
+            ...item,
+            prices: item.prices.map((price) =>
+              price.id === priceId ? { ...price, quantity } : price
+            ),
+          }))
+          .filter((item) => item.prices.some((p) => p.quantity > 0));
 
         set({ cart: updatedCart });
       },
@@ -93,17 +109,28 @@ export const useCartStore = create<CartStore>()(
 
       getTotalCount: () => {
         const { cart } = get();
-        return cart.reduce((total, item) =>
-          total + item.prices.reduce((itemTotal, price) => itemTotal + price.quantity, 0), 0
+        return cart.reduce(
+          (total, item) =>
+            total +
+            item.prices.reduce(
+              (itemTotal, price) => itemTotal + price.quantity,
+              0
+            ),
+          0
         );
       },
 
       getSubtotal: () => {
         const { cart } = get();
-        return cart.reduce((total, item) =>
-          total + item.prices.reduce((priceTotal, price) =>
-            priceTotal + (price.unit_amount * price.quantity), 0
-          ), 0
+        return cart.reduce(
+          (total, item) =>
+            total +
+            item.prices.reduce(
+              (priceTotal, price) =>
+                priceTotal + price.unit_amount * price.quantity,
+              0
+            ),
+          0
         );
       },
 
