@@ -1,18 +1,17 @@
 import type { Metadata } from 'next';
-import { Montserrat, Raleway } from 'next/font/google';
+import { Coustard, Karla } from 'next/font/google';
 import './globals.css';
 
-const montserrat = Montserrat({
-  variable: '--font-montserrat',
+const coustard = Coustard({
+  variable: '--font-coustard',
   subsets: ['latin'],
-  weight: ['200', '400', '600'],
-  style: ['normal', 'italic'],
+  weight: ['400'],
 });
 
-const raleway = Raleway({
-  variable: '--font-raleway',
+const karla = Karla({
+  variable: '--font-karla',
   subsets: ['latin'],
-  weight: ['200', '400', '700'],
+  weight: ['400', '700'],
 });
 
 export const metadata: Metadata = {
@@ -29,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${montserrat.variable} ${raleway.variable} font-sans antialiased`}
+        className={`${coustard.variable} ${karla.variable} font-sans antialiased`}
       >
         {children}
       </body>

@@ -23,12 +23,13 @@ export default async function MainLayout({
     })) || [];
 
   // Default to shifaaz-shamoon if no featured image is specified
-  const backgroundImageSrc = homeContent?.frontmatter?.featuredimage
-    ? `/content/home/${homeContent.frontmatter.featuredimage}`
-    : '/content/home/shifaaz-shamoon-okvxy9tg3ky-unsplash.jpg';
+  // const backgroundImageSrc = homeContent?.frontmatter?.featuredimage
+  //   ? `/content/home/${homeContent.frontmatter.featuredimage}`
+  //   : '/content/home/shifaaz-shamoon-okvxy9tg3ky-unsplash.jpg';
 
   return (
-    <BackgroundImage imageSrc={backgroundImageSrc}>
+    <>
+      {/* <BackgroundImage imageSrc={backgroundImageSrc}> */}
       <div id="page-wrapper">
         <Header
           siteTitle={siteMetadata.title}
@@ -40,6 +41,7 @@ export default async function MainLayout({
         <main className="min-h-screen">{children}</main>
       </div>
       {footerData && <Footer {...footerData} />}
-    </BackgroundImage>
+      {/* </BackgroundImage> */}
+    </>
   );
 }

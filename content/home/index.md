@@ -36,7 +36,7 @@ homequote: I’m Nina Groop — writer, editor, grant writer, and life coach —
   thoughtful editing, strategic grant writing, or personal support as you write
   a new future, I’m here to help you connect with your voice and make your
   message clear.
-featuredimage: typewriter_garden_bg.jpg
+featuredimage:
 footerbioimage: nina-bio.jpg
 footerbiotext: Nina is a writer, editor, speaker, and life coach. She's obsessed
   with reading and the possibility of finding owls when she's out hiking.
@@ -46,21 +46,22 @@ sociallinks:
     icon: substack.png
 footermeettext: Let's talk! Schedule a call to discuss how we can work together.
 footercredits:
-  - text: "Photo credit: Juniper Studios Photography"
-    linktext: "@juniperstudiosphotography "
+  - text: 'Photo credit: Juniper Studios Photography'
+    linktext: '@juniperstudiosphotography '
     url: http://instragram.com/juniperstudiosphotography
-  - linktext: "@laura_nicole_robinson"
-    text: "Photo credit: Laura Robinson"
+  - linktext: '@laura_nicole_robinson'
+    text: 'Photo credit: Laura Robinson'
     url: http://instragram.com/laura_nicole_robinson
 ---
+
 ## What I Offer.
 
-![](stoolb-w.jpg "#position=relative;float=right;width=50%;margin=0 0 20px 20px;")
+![](stoolb-w.jpg '#position=relative;float=right;width=50%;margin=0 0 20px 20px;')
 
-* Writing & Editing – Thoughtful, intuitive support to shape your story, refine your voice, and say what matters
-* Grant Writing – Turning bold ideas into funded realities with clarity and heart
-* Life Coaching – Forward-looking, compassionate guidance for life's transitions and turning points
-* My Writing – Poetry, essays, and true stories from a life of listening
+- Writing & Editing – Thoughtful, intuitive support to shape your story, refine your voice, and say what matters
+- Grant Writing – Turning bold ideas into funded realities with clarity and heart
+- Life Coaching – Forward-looking, compassionate guidance for life's transitions and turning points
+- My Writing – Poetry, essays, and true stories from a life of listening
 
 **Let's bring your ideas — and your story — to life.**
 
@@ -93,9 +94,9 @@ footercredits:
 
 > Nina has been a tremendous help as I navigate the twists and turns of life. Her insightful and uncanny way of getting to the heart of an issue has given me a fresh perspective and new confidence in tackling my goals. ~ Sam R.
 
->Nina’s brilliance as a writer and editor is matched by her role as a trusted thought partner. Her
-guidance and insights have been instrumental in driving the success of my business. ~ Frank
-Grossman, principal & founder, Integrated Impact Group
+> Nina’s brilliance as a writer and editor is matched by her role as a trusted thought partner. Her
+> guidance and insights have been instrumental in driving the success of my business. ~ Frank
+> Grossman, principal & founder, Integrated Impact Group
 
 <br />
 
