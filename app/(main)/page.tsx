@@ -25,13 +25,6 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* Tagline Section */}
-      <section className="flex w-full justify-center">
-        <h2 className="text-text-bold min-w-[80vw] bg-transparent py-5 text-center text-3xl font-bold uppercase">
-          {frontmatter.tagline}
-        </h2>
-      </section>
-
       {/* Spacing */}
       <div className="h-16" />
 

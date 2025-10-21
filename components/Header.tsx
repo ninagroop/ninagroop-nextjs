@@ -172,26 +172,23 @@ const Header: React.FC<HeaderProps> = ({ siteTitle, siteDescription, nav }) => {
       {/* Spacer to prevent content from going under fixed header */}
       <div className="h-16" />
 
-      {/* Hero Section - Only show on home page */}
-      {pathname === '/' && (
-        <div className="py-12 text-center sm:py-16 lg:py-20">
-          {/* <h1 className="brand brand-title mb-4 text-4xl tracking-wide sm:text-5xl lg:text-6xl">
+      <div className="py-12 text-center sm:py-16 lg:py-20">
+        {/* <h1 className="brand brand-title mb-4 text-4xl tracking-wide sm:text-5xl lg:text-6xl">
 
           </h1> */}
 
-          <Image
-            src="/content/home/nina-groop-logo.svg"
-            alt={siteTitle}
-            width="300"
-            height="200"
-            className="mx-auto mt-0 mb-0"
-          />
+        <Image
+          src="/content/home/nina-groop-logo.svg"
+          alt={siteTitle}
+          width="300"
+          height="200"
+          className="mx-auto mt-0 mb-0"
+        />
 
-          <h2 className="brand brand-subtitle text-lg font-light tracking-wide sm:text-xl lg:text-2xl">
-            {siteDescription}
-          </h2>
-        </div>
-      )}
+        <h2 className="brand brand-subtitle text-lg font-light tracking-wide sm:text-xl lg:text-2xl">
+          {siteDescription}
+        </h2>
+      </div>
 
       {/* Mobile Menu */}
       <MobileMenu
